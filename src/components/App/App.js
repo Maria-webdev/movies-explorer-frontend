@@ -1,28 +1,26 @@
-import React from 'react'; 
-import './App.css'; 
-import Header from './Header'; 
-import Main from './Main'; 
-import Footer from './Footer'; 
+import React from 'react';
+import './App.css';
 
+import Footer from '../Footer/Footer';
+import AboutProject from '../AboutProject/AboutProject';
+import Techs from '../Techs/Techs';
 
-return ( 
+function App() {
+  return (
+    <div className='page'>
+        <div className='page__container'>
 
- 
-
-  ( 
-
-    <> 
-
-      <div className='page__container'> 
-        <Header /> 
-        <Main /> 
-        <Footer /> 
-      </div> 
+   
+           
+              <Footer />
+               <AboutProject />
+               <Techs />
 
 
 
-    </> 
+        </div>
+    </div>
+  );
+}
 
-  ) 
-
-); 
+export default App;
