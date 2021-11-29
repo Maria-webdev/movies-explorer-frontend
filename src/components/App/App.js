@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import Footer from '../Footer/Footer';
-import AboutProject from '../AboutProject/AboutProject';
+// import Footer from '../Footer/Footer';
+// import AboutProject from '../AboutProject/AboutProject';
 import Techs from '../Techs/Techs';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function App() {
   return (
@@ -12,9 +14,11 @@ function App() {
 
    
            
-              <Footer />
-               <AboutProject />
+              {/* <Footer />
+               <AboutProject /> */}
                <Techs />
+               <Register />
+               <Login />
 
 
 

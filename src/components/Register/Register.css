@@ -1,0 +1,163 @@
+.register {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 1px red solid;
+}
+
+.register__block {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-width: 396px;
+	width: 100%;
+	margin-top: 70px;
+	border: 1px red solid;
+}
+
+.register__heading {
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 29.05px;
+	margin: 40px 0 40px;
+	padding: 0;
+	box-sizing: border-box;
+	border: 1px red solid;
+}
+
+.register__form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0 auto;
+	box-sizing: border-box;
+	max-width: 396px;
+	border: 1px red solid;
+}
+
+.register__input {
+	font-size: 10px;
+	line-height: 12.1px;
+	color: #a0a0a0;
+	margin: 20px 0 25px;
+	border: 1px red solid;
+}
+
+.register__input:first-of-type {
+	margin: 0 0 10px;
+	border: 1px red solid;
+}
+
+.register__field-password {
+	color: #ee3465;
+	border: 1px red solid;
+}
+
+.register__field {
+	background: #f9f9f9;
+	border-radius: 8px;
+	width: 100%;
+	height: 46px;
+	border: none;
+	outline: none;
+	padding: 15px;
+	font-size: 13px;
+	line-height: 15.73px;
+	box-sizing: border-box;
+	border: 1px red solid;
+}
+
+.register__field-email {
+	font-weight: 500;
+	border: 1px red solid;
+}
+
+.register__form-button {
+	width: 100%;
+	max-width: 396px;
+	height: 45px;
+	margin: 235px 0 16px;
+	padding: 14px;
+	align-items: center;
+	border: none;
+	box-sizing: border-box;
+	background: #ff6838;
+	border-radius: 3px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #ffffff;
+	border: 1px red solid;
+}
+
+.register__form-button:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	border: 1px red solid;
+}
+
+.register__signin {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 16px auto 70px;
+	border: 1px red solid;
+}
+
+.register__input-error {
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 12.1px;
+	color: #ee3465;
+	display: block;
+	margin-top: 10px;
+	min-height: 12px;
+	pointer-events: none;
+	border: 1px red solid;
+}
+
+.register__link-title {
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #a0a0a0;
+	margin: 0 6px 0 0;
+	border: 1px red solid;
+}
+
+.register__login-link {
+	font-size: 14px;
+	line-height: 17px;
+	text-align: center;
+	color: #ff6838;
+	border: 1px red solid;
+}
+
+@media screen and (max-width: 320px) {
+	.register__heading {
+		margin: 50px 0 80px;
+	}
+
+	.register__form {
+		max-width: 260px;
+	}
+
+	.register__form-btn {
+		margin: 157px 0 14px;
+		font-size: 12px;
+		line-height: 14.52px;
+	}
+
+	.register__link-title {
+		margin: 0 7px 30px 0;
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.register__login-link {
+		font-size: 12px;
+		line-height: 15px;
+	}
+}
