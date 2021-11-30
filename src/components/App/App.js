@@ -3,9 +3,10 @@ import './App.css';
 
 // import Footer from '../Footer/Footer';
 // import AboutProject from '../AboutProject/AboutProject';
-import Techs from '../Techs/Techs';
-import Register from '../Register/Register';
-import Login from '../Login/Login';
+// import Techs from '../Techs/Techs';
+// import Register from '../Register/Register';
+// import Login from '../Login/Login';
+import NotFound from '../NotFound/NotFound';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
            
               {/* <Footer />
                <AboutProject /> */}
-               <Techs />
+               {/* <Techs />
                <Register />
-               <Login />
+               <Login /> */}
+               <NotFound />
 
 
 
