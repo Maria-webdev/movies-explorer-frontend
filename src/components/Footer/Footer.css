@@ -2,7 +2,6 @@
 	background: #fafafa;
 	display: flex;
 	flex-direction: column;
-	padding: 79px 70px 20px;
 	border: 1px red solid;
 }
 
@@ -70,18 +69,7 @@
 	border: 1px red solid;
 }
 
-@media screen and (max-width: 768px) {
-	.footer {
-		padding: 79px 30px 20px;
-	}
-}
-
-@media screen and (max-width: 360px) {
-	.footer {
-		padding: 79px 10px 10px;
-		background: #ffffff;
-	}
-
+@media screen and (max-width: 500px) {
 	.footer-block__title {
 		font-size: 12px;
 		line-height: 14.52px;

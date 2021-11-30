@@ -4,6 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <section className='footer'>
+           <article className='page__content' >
       <div className='footer-block'>
         <h3 className='footer-block__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h3>
       </div>
@@ -30,6 +31,7 @@ function Footer() {
           </li>
         </nav>
       </div>
+      </article>
     </section>
   );
 }
