@@ -1,13 +1,13 @@
 import React from 'react';
 import './Login.css';
 // import { Link } from 'react-router-dom';
-// import Logo from '../../images/logo.png';
+import logo from '../../images/logo.png';
 
 function Login() {
   return (
     <section className='login'>
       <div className='login__block'>
-        {/* <Logo /> */}
+      <img className="logo" src={logo} alt="логотип" />
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 

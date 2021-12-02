@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 // import AboutProject from '../AboutProject/AboutProject';
 // import Techs from '../Techs/Techs';
 // import Register from '../Register/Register';
-// import Login from '../Login/Login';
+import Login from '../Login/Login';
 // import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
 
@@ -19,8 +19,8 @@ function App() {
               <Footer />
                {/* <AboutProject />
                <Techs />
-               <Register />
-               <Login /> */}
+               <Register /> */}
+               <Login />
                {/* <NotFound /> */}
                <Profile />
 
