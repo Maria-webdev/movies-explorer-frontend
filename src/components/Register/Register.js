@@ -1,13 +1,13 @@
 import React from 'react';
 import './Register.css';
 // import { Link } from 'react-router-dom';
-// import Logo from '../../images/logo.png';
+import logo from '../../images/logo.png';
 
 function Register() {
   return (
     <section className='register'> 
       <div className='register__block'>
-        {/* <Logo /> */}
+      <img className="logo" src={logo} alt="логотип" />
         <h2 className='register__heading'>Добро пожаловать!</h2>
       </div>
 

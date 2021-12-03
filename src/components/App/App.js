@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 // import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
+import Preloader from "./../Preloader/Preloader";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                <Login />
                {/* <NotFound /> */}
                <Profile />
+               <Preloader />
 
 
 

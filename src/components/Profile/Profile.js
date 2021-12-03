@@ -1,10 +1,12 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import './Profile.css';
+import logo from '../../images/logo.png';
 
 function Profile() {
   return (
     <section className='profile'>
+      <img className="logo" src={logo} alt="логотип" />
       <h2 className='profile__heading'>Привет, Виталий</h2>
 
       <article className='page__content'>
