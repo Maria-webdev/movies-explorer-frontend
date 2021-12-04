@@ -2,7 +2,6 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border: 1px red solid;
 }
 
 .register__block {
@@ -12,7 +11,6 @@
 	max-width: 396px;
 	width: 100%;
 	margin-top: 70px;
-	border: 1px red solid;
 }
 
 .register__heading {
@@ -22,7 +20,6 @@
 	margin: 40px 0 40px;
 	padding: 0;
 	box-sizing: border-box;
-	border: 1px red solid;
 }
 
 .register__form {
@@ -33,7 +30,6 @@
 	margin: 0 auto;
 	box-sizing: border-box;
 	max-width: 396px;
-	border: 1px red solid;
 }
 
 .register__input {
@@ -41,17 +37,14 @@
 	line-height: 12.1px;
 	color: #a0a0a0;
 	margin: 20px 0 25px;
-	border: 1px red solid;
 }
 
 .register__input:first-of-type {
 	margin: 0 0 10px;
-	border: 1px red solid;
 }
 
 .register__field-password {
 	color: #ee3465;
-	border: 1px red solid;
 }
 
 .register__field {
@@ -65,12 +58,10 @@
 	font-size: 13px;
 	line-height: 15.73px;
 	box-sizing: border-box;
-	border: 1px red solid;
 }
 
 .register__field-email {
 	font-weight: 500;
-	border: 1px red solid;
 }
 
 .register__form-button {
@@ -89,13 +80,11 @@
 	line-height: 17px;
 	text-align: center;
 	color: #ffffff;
-	border: 1px red solid;
 }
 
 .register__form-button:hover {
 	opacity: 0.8;
 	cursor: pointer;
-	border: 1px red solid;
 }
 
 .register__signin {
@@ -103,7 +92,6 @@
 	justify-content: center;
 	align-items: center;
 	margin: 16px auto 70px;
-	border: 1px red solid;
 }
 
 .register__input-error {
@@ -115,7 +103,6 @@
 	margin-top: 10px;
 	min-height: 12px;
 	pointer-events: none;
-	border: 1px red solid;
 }
 
 .register__link-title {
@@ -124,7 +111,6 @@
 	text-align: center;
 	color: #a0a0a0;
 	margin: 0 6px 0 0;
-	border: 1px red solid;
 }
 
 .register__login-link {
@@ -132,7 +118,6 @@
 	line-height: 17px;
 	text-align: center;
 	color: #ff6838;
-	border: 1px red solid;
 }
 
 @media screen and (max-width: 320px) {

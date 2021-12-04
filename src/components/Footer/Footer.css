@@ -2,12 +2,10 @@
 	background: #fafafa;
 	display: flex;
 	flex-direction: column;
-	border: 1px red solid;
 }
 
 .footer-block {
 	padding: 0 0 20px;
-	border: 1px red solid;
 }
 
 .footer-block__title {
@@ -17,21 +15,18 @@
 	text-align: center;
 	color: #a0a0a0;
 	margin: 0;
-	border: 1px red solid;
 }
 
 .footer__copyright {
 	font-weight: 400;
 	font-size: 13px;
 	line-height: 15.73px;
-	border: 1px red solid;
 }
 
 .footer-links {
 	display: flex;
 	flex-direction: row;
 	list-style-type: none;
-	border: 1px red solid;
 }
 
 .footer-links__item {
@@ -41,13 +36,11 @@
 	line-height: 15.73px;
 	text-align: right;
 	transition: opacity 0.2s ease-out;
-	border: 1px red solid;
 }
 
 .footer-links__item:hover {
 	cursor: pointer;
 	opacity: 0.7;
-	border: 1px red solid;
 }
 
 .footer-links__item:last-of-type {
@@ -60,13 +53,11 @@
 	justify-content: space-between;
 	margin: 10px 0 0;
 	align-items: center;
-	border: 1px red solid;
 }
 
 .footer-links__link {
 	text-decoration: none;
 	color: #000000;
-	border: 1px red solid;
 }
 
 @media screen and (max-width: 500px) {

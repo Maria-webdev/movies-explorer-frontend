@@ -101,7 +101,7 @@
 	}
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
 	.techs {
 		background: #ffffff;
 	}
@@ -133,5 +133,7 @@
 	.techs-list__title {
 		font-size: 30px;
 		line-height: 36.31px;
+		font-family: Inter;
+		text-align: center;
 	}
 }

@@ -4,7 +4,6 @@
 	justify-content: center;
 	margin: 0 auto;
 	align-items: center;
-	border: 1px red solid;
 }
 
 .not-found_type_404 {
@@ -14,7 +13,6 @@
 	font-size: 140px;
 	line-height: 169.43px;
 	text-align: center;
-	border: 1px red solid;
 }
 
 .not-found__title {
@@ -25,7 +23,6 @@
 	font-size: 16px;
 	line-height: 19.36px;
 	text-align: center;
-	border: 1px red solid;
 }
 
 .not-found__link {
@@ -38,7 +35,6 @@
 	text-decoration: none;
 	margin: 184px auto 60px;
 	cursor: pointer;
-	border: 1px red solid;
 }
 
 @media screen and (max-width: 400px) {

@@ -7,7 +7,7 @@ function Register() {
   return (
     <section className='register'> 
       <div className='register__block'>
-      <img className="logo" src={logo} alt="логотип" />
+      <img className='logo' src={logo} alt='логотип' />
         <h2 className='register__heading'>Добро пожаловать!</h2>
       </div>
 

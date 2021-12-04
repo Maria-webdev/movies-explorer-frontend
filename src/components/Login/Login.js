@@ -1,13 +1,13 @@
 import React from 'react';
 import './Login.css';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.png';
 
 function Login() {
   return (
     <section className='login'>
       <div className='login__block'>
-      <img className="logo" src={logo} alt="логотип" />
+      <img className='logo' src={logo} alt='логотип' />
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 
@@ -24,9 +24,9 @@ function Login() {
 
         <div className='login__signin'>
           <p className='login__link-title'>Ещё не зарегистрированы?</p>
-          {/* <Link to='/signup' className='login__login-link'>
+          <Link to='/signup' className='login__login-link'>
             Регистрация
-          </Link> */}
+          </Link>
         </div>
       </form>
     </section>

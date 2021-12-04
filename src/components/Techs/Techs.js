@@ -8,15 +8,9 @@ function Techs() {
         <p className='project-title'>Технологии</p>
         <div className='line'></div>
         <div className='techs-list'>
-            <h2 className='techs-list__title'>
-              7 технологий
-            </h2>
-            <p className='techs-list__item'>
-              На курсе веб-разработки мы освоили технологии, которые применили в
-              дипломном проекте.
-            </p>
+            <h2 className='techs-list__title'>7 технологий</h2>
+            <p className='techs-list__item'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
         </div>
-
         <ul className='techs-nav-list'>
           <li className='techs-nav-list__item'>
             <p className='techs-nav-list__text'>HTML</p>

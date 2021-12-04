@@ -5,27 +5,17 @@ import './AboutProject.css';
 function AboutProject() {
   return (
     <section className='about-project'>
-      <article className='page__content' >
+      <article className='page__content'>
         <p className='project-title'>О проекте</p>
         <div className='line'></div>
         <ul className='project-list'>
           <li className='project-list__item'>
-            <h3 className='project-list__heading'>
-              Дипломный проект включал 5 этапов
-            </h3>
-            <p className='project-list__text'>
-              Составление плана, работу над бэкендом, вёрстку, добавление
-              функциональности и финальные доработки.
-            </p>
+            <h3 className='project-list__heading'>Дипломный проект включал 5 этапов</h3>
+            <p className='project-list__text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
           </li>
           <li className='project-list__item'>
-            <h3 className='project-list__heading'>
-              На выполнение диплома ушло 5 недель
-            </h3>
-            <p className='project-list__text'>
-              У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
-              соблюдать, чтобы успешно защититься.
-            </p>
+            <h3 className='project-list__heading'>На выполнение диплома ушло 5 недель</h3>
+            <p className='project-list__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
           </li>
         </ul>
 

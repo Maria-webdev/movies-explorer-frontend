@@ -3,7 +3,7 @@
 	color: black;
 	font-family: "Inter", "Arial", sans-serif;
 	margin: 0;
-	border: 1px red solid;
+	min-width: 320px;
 }
 
 .page__container {
@@ -16,13 +16,11 @@
 	flex-direction: column;
 	box-sizing: border-box;
 	position: relative;
-	border: 1px red solid;
 }
 
 .page__content {
 	width: calc(100% - 2 * 70px);
 	margin: 0 auto;
-	border: 1px red solid;
 }
 
 @media screen and (max-width: 768px) {
@@ -37,12 +35,11 @@
 	}
 }
 
-/* .line {
+.line {
 	margin: 0 auto;
 	width: 100%;
 	background-size: 1px;
-	border: 1px red solid;
-} */
+}
 
 .logo {
 	width: 38px;

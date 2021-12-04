@@ -1,35 +1,27 @@
 import React from 'react';
 import './App.css';
 
-import Footer from '../Footer/Footer';
-// import AboutProject from '../AboutProject/AboutProject';
-// import Techs from '../Techs/Techs';
 // import Register from '../Register/Register';
-import Login from '../Login/Login';
+// import Login from '../Login/Login';
 // import NotFound from '../NotFound/NotFound';
-import Profile from '../Profile/Profile';
-import Preloader from "./../Preloader/Preloader";
+// import Profile from '../Profile/Profile';
+// import Preloader from './../Preloader/Preloader';
+// import Navigation from './../Navigation/Navigation';
+import Main from './../Main/Main';
 
 function App() {
   return (
     <div className='page'>
-        <div className='page__container'>
-
    
-        
-              <Footer />
-               {/* <AboutProject />
-               <Techs />
+        {/* <AboutProject />
                <Register /> */}
-               <Login />
-               {/* <NotFound /> */}
-               <Profile />
-               <Preloader />
-
-
-
-        </div>
-    </div>
+        {/* <Login /> */}
+        {/* <NotFound /> */}
+        {/* <Profile />
+               <Preloader /> */}
+        <Main />
+        {/* <Navigation /> */}
+      </div>
   );
 }
 
