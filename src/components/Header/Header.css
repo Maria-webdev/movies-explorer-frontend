@@ -10,7 +10,7 @@
 }
 
 .header__section {
-	margin: auto;
+	margin: 0 auto;
 	padding: 18px 70px;
 	width: 100%;
 	max-width: 1280px;
@@ -18,6 +18,8 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+
+	box-sizing: border-box;
 }
 
 .menu {

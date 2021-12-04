@@ -6,24 +6,21 @@ import './App.css';
 // import NotFound from '../NotFound/NotFound';
 // import Profile from '../Profile/Profile';
 // import Preloader from './../Preloader/Preloader';
-// import Navigation from './../Navigation/Navigation';
-// import Main from './../Main/Main';
-import SearchForm from './../SearchForm/SearchForm';
+import Main from './../Main/Main';
 
 
 function App() {
   return (
     <div className='page'>
    
-        {/* <AboutProject />
-               <Register /> */}
+
+               {/* <Register /> */}
         {/* <Login /> */}
         {/* <NotFound /> */}
         {/* <Profile />
                <Preloader /> */}
-        {/* <Main /> */}
-        <SearchForm />
-        {/* <Navigation /> */}
+        <Main />
+
       </div>
   );
 }

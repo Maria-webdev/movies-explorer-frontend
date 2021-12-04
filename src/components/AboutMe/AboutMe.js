@@ -3,10 +3,10 @@ import './AboutMe.css';
 import MyPhoto from '../../images/MyPhoto.png';
 
 function AboutMe() {
-  return (
-    <section className='student' id='student'>
-      <article className='page__content'>
-        <p className='student section__title section_size_l'>Студент</p>
+  return ( 
+    <section className='student'>
+      <div className='student__section'>
+        <p className='section__title'>Студент</p>
         <div className='student__profile'>
           <div className='student__info'>
             <h2 className='student__heading student__heading_size_l'>Мария</h2>
@@ -25,7 +25,7 @@ function AboutMe() {
             <img className='student__image' src={MyPhoto} alt='мое фото' />
           </div>
         </div>
-      </article>
+      </div>
     </section>
   );
 }

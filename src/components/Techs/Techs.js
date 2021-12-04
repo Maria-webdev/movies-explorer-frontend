@@ -4,9 +4,8 @@ import './Techs.css';
 function Techs() {
   return (
     <section className='techs'>
-      <article className='page__content'>
+      <div className='techs__section'>
         <p className='project-title'>Технологии</p>
-        <div className='line'></div>
         <div className='techs-list'>
             <h2 className='techs-list__title'>7 технологий</h2>
             <p className='techs-list__item'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
@@ -34,7 +33,7 @@ function Techs() {
             <p className='techs-nav-list__text'>mongoDB</p>
           </li>
         </ul>
-      </article>
+      </div>
     </section>
   );
 }

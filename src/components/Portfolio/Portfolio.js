@@ -5,13 +5,13 @@ import Arrow from '../../images/arrow.png';
 function Portfolio() {
   return (
     <section className='portfolio'>
-          <article className='page__content'>
+          <div className='portfolio__section'>
       <nav className='portfolio-list'>
         <h3 className='portfolio-list__heading'>Портфолио</h3>
         <li className='portfolio-list__item'>
           <a
             className='portfolio-list__link'
-            href='https://myr-irina.github.io/how-to-learn/'
+            href='https://github.com/Maria-webdev/Maria-webdev.github.io'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -26,7 +26,7 @@ function Portfolio() {
         <li className='portfolio-list__item'>
           <a
             className='portfolio-list__link'
-            href='https://myr-irina.github.io/project-work-3/'
+            href='https://maria-webdev.github.io/russian-travel/'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -41,7 +41,7 @@ function Portfolio() {
         <li className='portfolio-list__item'>
           <a
             className='portfolio-list__link'
-            href='https://mesto.mesto.students.nomoredomains.monster'
+            href='https://github.com/Maria-webdev/Maria-webdev.github.io'
             target='_blank'
             rel='noopener noreferrer'
           >
@@ -56,7 +56,7 @@ function Portfolio() {
           </a>
         </li>
       </nav>
-      </article>
+      </div>
     </section>
   );
 };

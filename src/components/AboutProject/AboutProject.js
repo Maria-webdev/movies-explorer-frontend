@@ -5,9 +5,8 @@ import './AboutProject.css';
 function AboutProject() {
   return (
     <section className='about-project'>
-      <article className='page__content'>
+      <div className='about-project__section'>
         <p className='project-title'>О проекте</p>
-        <div className='line'></div>
         <ul className='project-list'>
           <li className='project-list__item'>
             <h3 className='project-list__heading'>Дипломный проект включал 5 этапов</h3>
@@ -28,7 +27,7 @@ function AboutProject() {
           <li className='project-block project-block_type_text'>Back-end</li>
           <li className='project-block project-block_type_text'>Front-end</li>
         </ul>
-      </article>
+      </div>
     </section>
   );
 }
