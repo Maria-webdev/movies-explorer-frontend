@@ -7,7 +7,9 @@ import './App.css';
 // import Profile from '../Profile/Profile';
 // import Preloader from './../Preloader/Preloader';
 // import Navigation from './../Navigation/Navigation';
-import Main from './../Main/Main';
+// import Main from './../Main/Main';
+import SearchForm from './../SearchForm/SearchForm';
+
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
         {/* <NotFound /> */}
         {/* <Profile />
                <Preloader /> */}
-        <Main />
+        {/* <Main /> */}
+        <SearchForm />
         {/* <Navigation /> */}
       </div>
   );

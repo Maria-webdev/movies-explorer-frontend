@@ -1,0 +1,137 @@
+.search {
+	width: 100%;
+}
+
+.search__container {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1280px;
+	padding: 80px 70px 96px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	box-sizing: border-box;
+}
+
+.search__form {
+	display: flex;
+	width: calc(100% - 170px - 2 * 70px);
+	margin: 0 auto;
+	padding: 0;
+}
+
+.search__input-block {
+	width: 100%;
+	padding: 7px;
+	border: 1.5px solid #aaaaaa;
+	box-sizing: border-box;
+	border-radius: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	max-width: 932px;
+	align-self: flex-start;
+}
+
+.search__input {
+	width: 100%;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0px;
+	margin-right: 41px;
+	padding: 0;
+	border: none;
+}
+
+.search__button {
+	border: none;
+	width: 80px;
+	height: 34px;
+	border-radius: 30px;
+	margin-left: auto;
+	opacity: 1;
+	transition: 0.3s ease;
+	background-color: #ff6838;
+}
+
+.search__button:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.search_short {
+	width: 167px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.search__short-title {
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: 0em;
+}
+
+.search__short-button {
+	width: 36px;
+	height: 16px;
+	align-self: center;
+	background-color: #2be080;
+	border: none;
+	border-radius: 20px;
+	display: flex;
+	padding: 2px;
+}
+
+.search__short-disk {
+	width: 12px;
+	height: 12px;
+	margin-left: auto;
+	background-color: #fff;
+	border: none;
+	border-radius: 50px;
+	align-self: center;
+}
+
+.search__short-button_active .search__short-disk {
+	background-color: #8d9691;
+}
+
+@media screen and (max-width: 900px) {
+	.search__container {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 60px 30px 60px;
+	}
+
+	.search__input-block {
+		margin-bottom: 38px;
+	}
+
+	.search__form {
+		width: calc(100% - 2 * 30px);
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.search__container {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 60px 10px 50px;
+	}
+
+	.search__input-block {
+		margin-bottom: 45px;
+	}
+
+	.search__form {
+		width: calc(100% - 2 * 10px);
+		min-width: 300px;
+	}
+}
