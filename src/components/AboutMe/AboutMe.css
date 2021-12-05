@@ -1,8 +1,10 @@
 .student {
 	display: flex;
 	flex-direction: column;
-	margin: 0;
+	margin: 0 auto;
+	padding: 0;
 	width: 100%;
+	justify-content: center;
 }
 
 .student__section {
@@ -13,6 +15,7 @@
 	flex-direction: column;
 	margin: 0 auto;
 	box-sizing: border-box;
+	justify-content: center;
 }
 
 .student__image-card {
@@ -125,6 +128,10 @@
 		gap: 49px;
 		margin: 66px 0 0;
 	}
+
+	.student__section {
+		padding: 90px 50px;
+	}
 }
 
 @media screen and (max-width: 650px) {
@@ -171,5 +178,11 @@
 		font-size: 11px;
 		line-height: 16px;
 		margin: 20px 0 59px;
+	}
+}
+
+@media screen and (max-width: 637px) {
+	.student__section {
+		padding: 70px 18px;
 	}
 }

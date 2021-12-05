@@ -115,6 +115,11 @@
 	line-height: 17px;
 	text-align: center;
 	color: #ff6838;
+	text-decoration: none;
+}
+
+.register__login_link:hover {
+	opacity: 0.7;
 }
 
 .logo__register {

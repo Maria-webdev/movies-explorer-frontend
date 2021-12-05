@@ -1,8 +1,10 @@
 .about-project {
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
+	width: 100%;
 }
 
 .about-project__section {
@@ -11,6 +13,8 @@
 	max-width: 1280px;
 	padding: 110px 70px;
 	box-sizing: border-box;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .project-title {
@@ -108,6 +112,10 @@
 	.project-block_type_text {
 		margin: 14px 0 90px;
 	}
+
+	.about-project__section {
+		padding: 90px 50px;
+	}
 }
 
 @media screen and (max-width: 637px) {
@@ -122,6 +130,10 @@
 
 	.project-list__item {
 		margin: 0 0 60px 0;
+	}
+
+	.about-project__section {
+		padding: 70px 18px;
 	}
 }
 

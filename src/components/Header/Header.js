@@ -6,7 +6,7 @@ import Logo from '../Logo/Logo';
 
 function Header() {
   return (
-    <section className='header'>
+    <header className='header'>
       <article className='header__section'>
         <Logo />
         <div className='header__nav'>
@@ -20,7 +20,7 @@ function Header() {
           </button>
         </div>
       </article>
-    </section>
+    </header>
   );
 }
 

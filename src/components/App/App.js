@@ -14,7 +14,6 @@ import SavedMovies from './../SavedMovies/SavedMovies';
 
 function App() {
   return (
-    <div className='page'>
 
       <Switch>
 
@@ -48,7 +47,6 @@ function App() {
         </Route>
         
       </Switch>
-    </div>
   );
 }
 

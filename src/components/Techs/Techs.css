@@ -1,16 +1,17 @@
 .techs {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	background: #f5f5f5;
 	margin: 0 auto;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 	width: 100%;
+	background: #f5f5f5;
 }
 
 .techs__section {
 	width: 100%;
 	max-width: 1280px;
-	padding: 100px 70px;
+	padding: 110px 70px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -98,6 +99,16 @@
 	.techs-nav-list__text {
 		font-size: 12px;
 		line-height: 15px;
+	}
+
+	.techs__section {
+		padding: 90px 50px;
+	}
+}
+
+@media screen and (max-width: 637px) {
+	.techs__section {
+		padding: 70px 18px;
 	}
 }
 
