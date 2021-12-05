@@ -36,7 +36,7 @@
 	font-size: 10px;
 	line-height: 12.1px;
 	color: #a0a0a0;
-	margin: 20px 0 25px;
+	margin: 20px 0 10px;
 }
 
 .register__input:first-of-type {
@@ -54,14 +54,11 @@
 	height: 46px;
 	border: none;
 	outline: none;
+	font-weight: 500;
 	padding: 15px;
 	font-size: 13px;
 	line-height: 15.73px;
 	box-sizing: border-box;
-}
-
-.register__field-email {
-	font-weight: 500;
 }
 
 .register__form-button {

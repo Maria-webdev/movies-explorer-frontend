@@ -13,11 +13,11 @@ function Register() {
 
       <form className='register__form'>
         <span className='register__input'>Имя</span>
-        <input className='register__field register__field-name' name='name' type='text' minLength='2' maxLength='40' required></input>
+        <input className='register__field' name='name' type='text' minLength='2' maxLength='40' required></input>
         <span className='register__input-error'>Неверно заполнено поле 'Имя'</span>
 
         <span className='register__input'>E-mail</span>
-        <input className='register__field register__field-email' name='email' type='email' required></input>
+        <input className='register__field' name='email' type='email' required></input>
         <span className='register__input-error'>Неверно заполнено поле 'E-mail'</span>
 
         <span className='register__input'>Пароль</span>
