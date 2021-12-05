@@ -34,19 +34,3 @@
 		width: calc(100% - 2 * 14px);
 	}
 }
-
-.line {
-	margin: 0 auto;
-	width: 100%;
-	background-size: 1px;
-}
-
-.logo {
-	width: 38px;
-	height: 38px;
-	transition: transform 0.5 easy;
-}
-
-.logo:hover {
-	transform: 360deg;
-}

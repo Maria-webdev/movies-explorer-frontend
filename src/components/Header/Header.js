@@ -1,18 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import './../App/App.css';
-import Logo from '../../images/logo.png';
+import Logo from '../Logo/Logo';
 
 function Header() {
   return (
     <section className='header'>
       <article className='header__section'>
-        <img className='logo' src={Logo} alt='логотип' />
+        <Logo />
         <div className='header__nav'>
-          <p className='header__link'>Регистрация</p>
-          <button className='header__button'>Войти</button>        
+          <Link to='/signup' className='header__link'>
+            Регистрация
+          </Link>
+          <button className='header__button'>
+            <Link to='/signin' className='header__button_link'>
+              Войти
+            </Link>
+          </button>
         </div>
-
       </article>
     </section>
   );

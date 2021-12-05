@@ -1,32 +1,34 @@
 import React from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.png';
+import Logo from '../Logo/Logo';
 
 function Login() {
   return (
     <section className='login'>
       <div className='login__block'>
-      <img className='logo__login' src={logo} alt='логотип' />
+        <Logo className='logo logo__login' />
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 
       <form className='login__form'>
         <span className='login__input'>E-mail</span>
         <input className='login__field' name='email' type='email' required></input>
-        <span className='login__input-error'>Неверно заполнено поле 'E-mail'</span>
+        <span className='login__input_error'>Неверно заполнено поле 'E-mail'</span>
 
         <span className='login__input'>Пароль</span>
-        <input className='login__field login__field-password' name='password' type='password' required minLength='8'></input>
-        <span className='login__input-error'>Неверно заполнено поле 'Пароль'</span>
+        <input className='login__field login__field_password' name='password' type='password' required minLength='8'></input>
+        <span className='login__input_error'>Неверно заполнено поле 'Пароль'</span>
 
-        <button className='login__form-button' type='submit'>Войти</button>
+        <button className='login__form_button' type='submit'>
+          Войти
+        </button>
 
         <div className='login__signin'>
-          <p className='login__link-title'>Ещё не зарегистрированы?</p>
-          {/* <Link to='/signup' className='login__login-link'>
+          <p className='login__link_title'>Ещё не зарегистрированы?</p>
+          <Link to='/signup' className='login__login_link'>
             Регистрация
-          </Link> */}
+          </Link>
         </div>
       </form>
     </section>
@@ -34,3 +36,4 @@ function Login() {
 }
 
 export default Login;
+

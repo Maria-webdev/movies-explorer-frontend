@@ -43,7 +43,7 @@
 	margin: 0 0 10px;
 }
 
-.register__field-password {
+.register__field_password {
 	color: #ee3465;
 }
 
@@ -61,7 +61,7 @@
 	box-sizing: border-box;
 }
 
-.register__form-button {
+.register__form_button {
 	width: 100%;
 	max-width: 396px;
 	height: 45px;
@@ -79,7 +79,7 @@
 	color: #ffffff;
 }
 
-.register__form-button:hover {
+.register__form_button:hover {
 	opacity: 0.8;
 	cursor: pointer;
 }
@@ -91,7 +91,7 @@
 	margin: 16px auto 70px;
 }
 
-.register__input-error {
+.register__input_error {
 	font-weight: 400;
 	font-size: 10px;
 	line-height: 12.1px;
@@ -102,7 +102,7 @@
 	pointer-events: none;
 }
 
-.register__link-title {
+.register__link_title {
 	font-size: 14px;
 	line-height: 17px;
 	text-align: center;
@@ -110,7 +110,7 @@
 	margin: 0 6px 0 0;
 }
 
-.register__login-link {
+.register__login_link {
 	font-size: 14px;
 	line-height: 17px;
 	text-align: center;
@@ -130,19 +130,19 @@
 		max-width: 260px;
 	}
 
-	.register__form-btn {
+	.register__form-button {
 		margin: 157px 0 14px;
 		font-size: 12px;
 		line-height: 14.52px;
 	}
 
-	.register__link-title {
+	.register__link_title {
 		margin: 0 7px 30px 0;
 		font-size: 12px;
 		line-height: 15px;
 	}
 
-	.register__login-link {
+	.register__login_link {
 		font-size: 12px;
 		line-height: 15px;
 	}

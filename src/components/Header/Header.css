@@ -55,6 +55,7 @@
 	transition: 0.3s ease;
 	opacity: 1;
 	margin-right: 30px;
+	text-decoration: none;
 }
 
 .header__link:hover {
@@ -63,19 +64,22 @@
 }
 
 .header__button {
-	width: 76px;
-	height: 32px;
+	padding: 8px 20px;
 	background-color: #2be080;
 	border-radius: 3px;
 	transition: 0.3s ease;
 	opacity: 1;
 	border: none;
+}
+
+.header__button_link {
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: 16px;
 	letter-spacing: 0px;
 	color: #000;
+	text-decoration: none;
 }
 
 .header__button:hover {

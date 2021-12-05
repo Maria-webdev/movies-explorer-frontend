@@ -13,10 +13,10 @@ function SearchForm() {
             <button className='search__button' type='submit'><img src={SearchIcon} alt='иконка кнопки поиска'/></button>
           </div>        
         </form>
-        <div className='search_short'>
-            <p className='search__short-title'>Короткометражки</p>
-            <div className='search__short-button'>
-              <div className='search__short-disk'></div>
+        <div className='search__short'>
+            <p className='search__short_title'>Короткометражки</p>
+            <div className='search__short_button'>
+              <div className='search__short_disk'></div>
             </div>
           </div>
       </div>

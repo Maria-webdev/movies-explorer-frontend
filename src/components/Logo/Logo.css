@@ -1,0 +1,11 @@
+.logo__button {
+	width: 38px;
+	height: 38px;
+	-webkit-transition: -webkit-transform 0.8s ease-in-out;
+	transition: transform 0.8s ease-in-out;
+}
+
+.logo__button:hover {
+	-webkit-transform: rotate(360deg);
+	transform: rotate(360deg);
+}

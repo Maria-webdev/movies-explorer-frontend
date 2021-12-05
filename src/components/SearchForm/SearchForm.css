@@ -61,14 +61,14 @@
 	cursor: pointer;
 }
 
-.search_short {
+.search__short {
 	width: 167px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 }
 
-.search__short-title {
+.search__short_title {
 	font-size: 13px;
 	font-style: normal;
 	font-weight: 400;
@@ -76,7 +76,7 @@
 	letter-spacing: 0em;
 }
 
-.search__short-button {
+.search__short_button {
 	width: 36px;
 	height: 16px;
 	align-self: center;
@@ -87,7 +87,7 @@
 	padding: 2px;
 }
 
-.search__short-disk {
+.search__short_disk {
 	width: 12px;
 	height: 12px;
 	margin-left: auto;
@@ -97,7 +97,7 @@
 	align-self: center;
 }
 
-.search__short-button_active .search__short-disk {
+.search__short_button_active .search__short-disk {
 	background-color: #8d9691;
 }
 

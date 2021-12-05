@@ -6,7 +6,7 @@
 	align-items: center;
 }
 
-.not-found_type_404 {
+.not-found__title {
 	margin: 246px auto 5px;
 	font-weight: 400;
 	font-style: normal;
@@ -15,7 +15,7 @@
 	text-align: center;
 }
 
-.not-found__title {
+.not-found__message {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -38,13 +38,13 @@
 }
 
 @media screen and (max-width: 400px) {
-	.not-found_type_404 {
+	.not-found__title {
 		margin-bottom: 10px;
 		font-size: 80px;
 		line-height: 96.82px;
 	}
 
-	.not-found__title {
+	.not-found__message {
 		font-size: 12px;
 		line-height: 14.52px;
 		margin: 10px 0 0;
