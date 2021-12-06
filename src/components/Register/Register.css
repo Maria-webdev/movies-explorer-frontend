@@ -122,7 +122,7 @@
 	opacity: 0.7;
 }
 
-.logo__register {
+.logo_register {
 	margin-bottom: 40px;
 }
 
@@ -152,7 +152,7 @@
 		line-height: 15px;
 	}
 
-	.logo__register {
+	.logo_register {
 		margin: 0 auto 50px;
 	}
 }

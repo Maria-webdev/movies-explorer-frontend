@@ -7,7 +7,6 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Profile from '../Profile/Profile';
-import Preloader from './../Preloader/Preloader';
 import Main from './../Main/Main';
 import Movies from './../Movies/Movies';
 import SavedMovies from './../SavedMovies/SavedMovies';
@@ -23,7 +22,6 @@ function App() {
 
         <Route path='/movies'>
           <Movies />
-          <Preloader />
         </Route>
 
         <Route path='/saved-movies'>

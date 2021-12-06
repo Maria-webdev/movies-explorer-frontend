@@ -126,7 +126,7 @@
 	padding-bottom: 50px;
 }
 
-.logo__login {
+.logo_login {
 	margin-bottom: 40px;
 }
 
@@ -154,7 +154,8 @@
 		line-height: 15px;
 	}
 
-	.logo__login {
+	.logo_login {
 		margin: 0 auto 50px;
+		align-self: center;
 	}
 }
