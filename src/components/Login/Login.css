@@ -154,8 +154,10 @@
 		line-height: 15px;
 	}
 
-	.logo_login {
-		margin: 0 auto 50px;
-		align-self: center;
+	.login__block {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
 	}
 }

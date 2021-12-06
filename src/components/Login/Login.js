@@ -7,7 +7,7 @@ function Login() {
   return (
     <section className='login'>
       <div className='login__block'>
-        <Logo className='logo logo_login' />
+        <Logo className='logo center' />
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 

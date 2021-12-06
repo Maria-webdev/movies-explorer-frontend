@@ -71,17 +71,22 @@
 		position: absolute;
 		bottom: auto;
 		right: auto;
+		position: absolute;
+		top: 180px;
 	}
 
 	.promo__section {
 		position: relative;
+		min-height: 630px;
 	}
 
 	.promo__image {
 		position: absolute;
+		top: 360px;
+		bottom: 40px;
 	}
 }
-
+/* 
 @media screen and (max-width: 350px) {
 	.promo__section {
 		padding: 0;
@@ -93,4 +98,4 @@
 	.promo__image {
 		margin: 0 auto 0;
 	}
-}
+} */
