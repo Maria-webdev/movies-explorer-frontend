@@ -19,6 +19,10 @@ function Header() {
     setIsBurgerMenuOpened(true);
   }
 
+  function handleCloseBurger() {
+    setIsBurgerMenuOpened(false);
+  }
+
   return (
     <header className={`header ${isColor}`}>
       <article className='header__section'>
@@ -57,8 +61,9 @@ function Header() {
           </div>
         )}
       </article>
-      <div className={`burger-menu${isBurgerMenuOpened ? '_opened' : ''}`}>
-        <button className='burger__close-button'>
+      <div className={`burger__overlay ${isBurgerMenuOpened ? '_showed' : ''}`}>
+        <div className={`burger-menu ${isBurgerMenuOpened ? '_opened' : ''}`}>
+        <button className='burger__close-button' onClick={handleCloseBurger}>
           <img src={CloseButton} alt='кнопка закрытия скрытого меню' />
         </button>
         <div className='burger-menu__links'>
@@ -76,6 +81,7 @@ function Header() {
             <img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' />
           </Link>
         </div>
+      </div>
       </div>
     </header>
   );

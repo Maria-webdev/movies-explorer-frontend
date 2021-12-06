@@ -3,6 +3,15 @@ import './SearchForm.css';
 import SearchIcon from '../../images/search_icon.png';
 
 function SearchForm() {
+  const [isPicked, setIsPicked] = React.useState(false);
+
+  function handlePick() {
+    setIsPicked(true);
+  }
+
+  function handleUnpick() {
+    setIsPicked(false);
+  }
 
   return (
     <section className='search'>
@@ -15,10 +24,12 @@ function SearchForm() {
         </form>
         <div className='search__short'>
             <p className='search__short_title'>Короткометражки</p>
-            <div className='search__short_button'>
-              <div className='search__short_disk'></div>
+
+            <div onClick={handlePick} className={`search__short_button ${isPicked ? '_picked1' : ''}`}>
+              <div className={`search__short_disk ${isPicked ? '_picked2' : ''}`}></div>
             </div>
           </div>
+    
       </div>
     </section>
   );

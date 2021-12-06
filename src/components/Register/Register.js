@@ -7,7 +7,9 @@ function Register() {
   return (
     <section className='register'>
       <div className='register__block'>
-        <Logo className='logo logo_register' />
+        <div className='register__center'>
+          <Logo className='logo logo_register' />
+        </div>
         <h2 className='register__heading'>Добро пожаловать!</h2>
       </div>
 

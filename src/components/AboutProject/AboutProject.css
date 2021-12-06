@@ -93,7 +93,7 @@
 	line-height: 17px;
 	text-align: center;
 	color: #a0a0a0;
-	margin: 14px 0 110px;
+	margin: 14px 0 0;
 	padding: 0;
 	box-sizing: border-box;
 	height: 17px;
@@ -110,7 +110,7 @@
 	}
 
 	.project-block_type_text {
-		margin: 14px 0 90px;
+		margin: 14px 0 0;
 	}
 
 	.about-project__section {
@@ -159,7 +159,7 @@
 	}
 
 	.project-block_type_text {
-		margin: 10px 0 70px;
+		margin: 10px 0 0;
 	}
 
 	.project-title {
