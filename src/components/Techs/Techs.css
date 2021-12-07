@@ -70,6 +70,9 @@
 	line-height: 15px;
 	letter-spacing: -0.04em;
 	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .techs-nav-list__item:last-of-type {

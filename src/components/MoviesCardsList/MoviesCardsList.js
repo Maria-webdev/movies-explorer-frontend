@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './MoviesCardsList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';

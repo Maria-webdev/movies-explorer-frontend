@@ -88,9 +88,25 @@
 	cursor: pointer;
 }
 
-.moviecard__button_saved {
+.moviecard__button-saved {
 	width: 21px;
 	position: absolute;
 	top: 14px;
 	right: 14px;
+	padding: 0;
+	background-color: transparent;
+}
+
+.moviecard__button-delete {
+	width: 21px;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	padding: 0;
+	background-color: transparent;
+}
+
+.moviecard__button-delete:hover {
+	opacity: 0.7;
+	cursor: pointer;
 }
