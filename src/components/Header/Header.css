@@ -129,10 +129,20 @@
 	cursor: pointer;
 }
 
-.header__link_profile_image {
-	height: 11px;
-	width: 11px;
+.header__link_profile_image-box {
+	height: 30px;
+	width: 30px;
 	margin: auto 0;
+	padding: 9.7;
+	background-color: #f9f9f9;
+	border: none;
+	border-radius: 6px;
+	display: flex;
+}
+
+.header__link_profile_image {
+	margin: auto;
+	background-color: transparent;
 }
 
 .burger-menu {
@@ -266,9 +276,8 @@
 }
 
 .burger-menu__link_profile_image {
-	height: 11px;
-	width: 11px;
-	margin: auto 0;
+	margin: auto;
+	background-color: transparent;
 }
 
 .burger-menu__link_profile_title {

@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import './../App/App.css';
 import Logo from '../Logo/Logo';
-import ProfileIcon from '../../images/profile_icon.png';
-import Burger from '../../images/burger.png';
-import CloseButton from '../../images/close-button.png';
+import ProfileIcon from '../../images/profile_icon.svg';
+import Burger from '../../images/burger.svg';
+import CloseButton from '../../images/close_button.svg';
 
 function Header() {
   let loggedIn;
@@ -54,7 +54,7 @@ function Header() {
                 </Link>
                 <Link to='/profile' className='header__link_profile'>
                   <p className='header__link_profile_title'>Аккаунт</p>
-                  <img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' />
+                  <div className='header__link_profile_image-box'><img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
                 </Link>
               </>
             )}
@@ -78,7 +78,7 @@ function Header() {
           </Link>
           <Link to='/profile' className='burger-menu__link_profile'>
             <p className='burger-menu__link_profile_title'>Аккаунт</p>
-            <img className='burger-menu__link_profile_image' src={ProfileIcon} alt='значок аккаунта' />
+            <div className='header__link_profile_image-box'><img className='burger-menu__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
           </Link>
         </div>
       </div>

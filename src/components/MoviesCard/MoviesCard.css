@@ -20,6 +20,10 @@
 	border-radius: 6px;
 }
 
+.moviecard__pic:hover {
+	cursor: pointer;
+}
+
 .moviecard__info {
 	display: flex;
 	justify-content: space-between;
@@ -81,6 +85,9 @@
 	position: absolute;
 	top: 14px;
 	right: 14px;
+	border: none;
+	padding: 0;
+	z-index: 2;
 }
 
 .moviecard__button:hover {
@@ -95,6 +102,8 @@
 	right: 14px;
 	padding: 0;
 	background-color: transparent;
+	border: none;
+	z-index: 2;
 }
 
 .moviecard__button-delete {
@@ -104,6 +113,8 @@
 	right: 14px;
 	padding: 0;
 	background-color: transparent;
+	border: none;
+	z-index: 2;
 }
 
 .moviecard__button-delete:hover {

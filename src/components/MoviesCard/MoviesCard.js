@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import cards from '../../utils/cards';
 import ExampleCard from '../../images/film-1.png';
-import SavedMovieBtn from '../../images/saved-film-button.png';
-import SaveBtn from '../../images/save-button.png';
-import RemoveSavedMovie from '../../images/delete-film-button.png';
+import SavedMovieBtn from '../../images/saved-film_button.svg';
+import SaveBtn from '../../images/save_button.svg';
+import RemoveSavedMovie from '../../images/delete-film_button.svg';
 
 function MoviesCard(props) {
   let SavedMovie;

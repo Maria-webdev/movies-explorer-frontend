@@ -135,22 +135,20 @@
 	.about-project__section {
 		padding: 70px 18px;
 	}
+
+	.project-list__text {
+		margin: 16px 0 0 0;
+	}
+
+	.project-list__item:last-of-type {
+		margin: 0 0 56px 0;
+	}
 }
 
 @media screen and (max-width: 320px) {
 	.project-list__heading {
 		font-size: 18px;
 		line-height: 21.7px;
-	}
-
-	.project-list__text {
-		margin: 16px 0 0 0;
-		font-size: 11px;
-		line-height: 16px;
-	}
-
-	.project-list__item:last-of-type {
-		margin: 0 0 56px 0;
 	}
 
 	.project-block {
@@ -167,5 +165,10 @@
 		font-style: normal;
 		font-size: 18px;
 		line-height: 21.78px;
+	}
+
+	.project-list__text {
+		font-size: 11px;
+		line-height: 16px;
 	}
 }

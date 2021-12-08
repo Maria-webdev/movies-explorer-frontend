@@ -16,7 +16,7 @@
 
 .search__form {
 	display: flex;
-	width: calc(100% - 170px - 2 * 70px);
+	width: calc(100% - 215px);
 	margin-right: auto;
 	padding: 0;
 }
@@ -24,7 +24,7 @@
 .search__input-block {
 	width: 100%;
 	padding: 7px;
-	border: 1.5px solid #aaaaaa;
+	border: 1.5px solid rgba(67%, 67%, 67%, 0.2);
 	box-sizing: border-box;
 	border-radius: 50px;
 	display: flex;

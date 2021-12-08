@@ -1,6 +1,6 @@
 import React from 'react';
 import './SearchForm.css';
-import SearchIcon from '../../images/search_icon.png';
+import SearchIcon from '../../images/search_icon.svg';
 
 function SearchForm() {
   const [isPicked, setIsPicked] = React.useState(false);
@@ -18,7 +18,7 @@ function SearchForm() {
       <div className='search__container'>
         <form className='search__form'>
           <div className='search__input-block'>
-            <input className='search__input' type='text' placeholder='Фильм' autoComplete='off' minLength='2' maxLength='200'/>
+            <input className='search__input' type='text' placeholder='Фильм' autoComplete='off' minLength='2' maxLength='200' required/>
             <button className='search__button' type='submit'><img src={SearchIcon} alt='иконка кнопки поиска'/></button>
           </div>        
         </form>
