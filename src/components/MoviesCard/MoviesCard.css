@@ -1,0 +1,123 @@
+.moviecard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0;
+	max-width: 360px;
+}
+
+.moviecard__block {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	position: relative;
+}
+
+.moviecard__pic {
+	object-fit: cover;
+	width: 100%;
+	height: 85%;
+	border-radius: 6px;
+}
+
+.moviecard__pic:hover {
+	cursor: pointer;
+}
+
+.moviecard__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.moviecard__title {
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0px;
+	padding: 0;
+	margin: 0;
+}
+
+.moviecard__duration {
+	font-size: 11px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 10px;
+	letter-spacing: 0px;
+	text-align: right;
+	color: #a0a0a0;
+	padding: 0;
+}
+
+@media screen and (max-width: 728px) {
+	.moviecard__title {
+		line-height: 15px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.moviecard__content {
+		max-width: 300px;
+		margin: 0;
+	}
+
+	.moviecard__title {
+		font-size: 12px;
+		line-height: 15px;
+	}
+}
+
+.moviecard__button {
+	width: 72px;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 9px;
+	letter-spacing: 0px;
+	text-align: center;
+	border: none;
+	border-radius: 30px;
+	background-color: #f9f9f9;
+	transition: opacity 0.3s ease-in-out;
+	z-index: 3;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	border: none;
+	padding: 0;
+	z-index: 2;
+}
+
+.moviecard__button:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.moviecard__button-saved {
+	width: 21px;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	z-index: 2;
+}
+
+.moviecard__button-delete {
+	width: 21px;
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+	z-index: 2;
+}
+
+.moviecard__button-delete:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}

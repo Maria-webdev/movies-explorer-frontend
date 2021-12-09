@@ -1,0 +1,152 @@
+.profile {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+}
+
+.profile__heading {
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 29.05px;
+
+	margin: 74px auto 123px;
+	letter-spacing: 0em;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.profile__content {
+	margin: 0 auto 102px;
+	width: 100%;
+	max-width: 410px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.profile__form {
+	width: 100%;
+	max-width: 410px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto 240px;
+	box-sizing: border-box;
+}
+
+.profile__input-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	padding-bottom: 5px;
+	margin-bottom: ;
+}
+
+.profile__input-box:first-of-type {
+	border-bottom: 1px solid #e8e8e8;
+	padding-bottom: 16px;
+	margin-bottom: 17px;
+}
+
+.profile__input-box:last-of-type {
+	margin-bottom: 220px;
+}
+
+.profile__input {
+	width: 15%;
+	border: none;
+	font-weight: 500;
+	font-style: normal;
+	font-size: 11px;
+	line-height: 13px;
+}
+
+.profile__field_name {
+	border: none;
+	outline: none;
+	font-size: 11px;
+	line-height: 13px;
+	text-align: right;
+}
+
+.profile__field_email {
+	border: none;
+	outline: none;
+	font-size: 11px;
+	line-height: 13px;
+	text-align: right;
+}
+
+.profile__form_button {
+	width: 100%;
+	margin-bottom: 210px auto 16px;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 16px;
+	align-items: center;
+	text-align: center;
+	background: #ffffff;
+	border: none;
+	transition: opacity 0.2s ease-out;
+	opacity: 1;
+}
+
+.profile__form_button:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.profile__link {
+	margin: 16px auto 0px;
+	color: #ee3465;
+	font-weight: 500;
+	font-style: normal;
+	font-size: 13px;
+	line-height: 16px;
+	text-decoration: none;
+	color: #ee3465;
+}
+
+.profile__input_error {
+	font-weight: 400;
+	font-size: 10px;
+	line-height: 12.1px;
+	color: #ee3465;
+	display: block;
+	margin-top: 10px;
+	min-height: 12px;
+	pointer-events: none;
+	align-self: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+	.profile {
+		padding: 0 0 70px;
+	}
+
+	.profile__form {
+		margin: 96px auto 220px;
+	}
+
+	.profile__heading {
+		margin: 236px auto 96px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.profile {
+		padding: 0 0 70px;
+	}
+
+	.profile__form {
+		margin: 80px auto 220px;
+		max-width: 260px;
+	}
+
+	.profile__heading {
+		margin: 70px auto 60px;
+	}
+}

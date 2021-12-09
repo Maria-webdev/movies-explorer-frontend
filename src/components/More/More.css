@@ -1,0 +1,28 @@
+.more {
+	margin: 0;
+	padding: 50px 0 80px;
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+}
+
+.more__button {
+	width: 320px;
+	height: 36px;
+	border: 1px solid #e8e8e8;
+	background-color: #fff;
+	align-self: center;
+	cursor: pointer;
+	transition: 0.3s ease;
+}
+
+.more__button:hover {
+	background-color: #2be080;
+	opacity: 0.7;
+}
+
+@media screen and (max-width: 400px) {
+	.header__section {
+		width: 240px;
+	}
+}
