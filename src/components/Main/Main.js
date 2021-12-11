@@ -8,7 +8,7 @@ import AboutMe from '../AboutMe/AboutMe';
 import Footer from '../Footer/Footer';
 import Portfolio from '../Portfolio/Portfolio';
 
-function Main() {
+function Main(props) {
   return (
     <>
       <div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
 
-function Profile() {
+function Profile(props) {
   return (
     <section className='profile'>
       <Header />

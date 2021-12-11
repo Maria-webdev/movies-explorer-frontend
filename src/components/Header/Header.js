@@ -7,7 +7,7 @@ import ProfileIcon from '../../images/profile_icon.svg';
 import Burger from '../../images/burger.svg';
 import CloseButton from '../../images/close_button.svg';
 
-function Header() {
+function Header(props) {
   let loggedIn;
   const { pathname } = useLocation();
   loggedIn = pathname === '/profile';

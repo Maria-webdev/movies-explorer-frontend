@@ -6,7 +6,7 @@ import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
 import More from '../More/More';
 import Footer from '../Footer/Footer';
 
-function Movies() {
+function Movies(props) {
   return (
     <>
       <div>
