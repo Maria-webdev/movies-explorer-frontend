@@ -75,6 +75,12 @@
 	color: #ffffff;
 }
 
+.login__form_button_disabled {
+	pointer-events: none;
+	cursor: default;
+	background-color: rgba(255, 104, 56, 0.2);
+}
+
 .login__form_button:hover {
 	opacity: 0.8;
 	cursor: pointer;

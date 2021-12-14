@@ -6,14 +6,14 @@ import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
 import More from '../More/More';
 import Footer from '../Footer/Footer';
 
-function Movies(props) {
+function Movies({loggedIn, cards}) {
   return (
     <>
       <div>
         <section className='movies'>
-          <Header />
+          <Header loggedIn={loggedIn}/>
           <SearchForm />
-          <MoviesCardsList />
+          <MoviesCardsList cards={cards} />
           <More />
           <Footer />
         </section>

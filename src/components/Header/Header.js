@@ -7,10 +7,8 @@ import ProfileIcon from '../../images/profile_icon.svg';
 import Burger from '../../images/burger.svg';
 import CloseButton from '../../images/close_button.svg';
 
-function Header(props) {
-  let loggedIn;
+function Header({loggedIn}) {
   const { pathname } = useLocation();
-  loggedIn = pathname === '/profile';
   const isTablet = window.matchMedia('(max-width: 1023px)').matches;
   const isColor = pathname === '/' ? '' : '_color';
   const [isBurgerMenuOpened, setIsBurgerMenuOpened] = React.useState(false);

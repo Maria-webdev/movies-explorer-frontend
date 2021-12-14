@@ -1,5 +1,5 @@
-export const BASE_URL = 'https://viannat-backend-mesto.nomoredomains.club';
-//export const BASE_URL = 'http://localhost:3000';
+//export const BASE_URL = 'https://viannat-backend-mesto.nomoredomains.club';
+export const BASE_URL = 'http://localhost:3000';
 
 export const checkResponse = (res) => {
   if (res.ok) {
@@ -8,7 +8,7 @@ export const checkResponse = (res) => {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export const register = (email, password) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: {
@@ -16,7 +16,7 @@ export const register = (email, password) => {
         'Content-Type': 'application/json'
       },
       credentials: 'include',
-      body: JSON.stringify({email, password})
+      body: JSON.stringify({name, email, password})
     })
     .then(checkResponse)
   };

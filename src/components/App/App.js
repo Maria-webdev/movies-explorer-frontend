@@ -9,8 +9,8 @@ import Main from './../Main/Main';
 import Movies from './../Movies/Movies';
 import SavedMovies from './../SavedMovies/SavedMovies';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import api from '../../utils/api';
-import moviesApi from '../../utils/moviesApi';
+import mainApi from '../../utils/MainApi';
+import moviesApi from '../../utils/MoviesApi';
 import * as auth from '../../utils/auth';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
@@ -20,18 +20,12 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
-  const [isSuccess, setSuccess] = React.useState(false);
 
   const checkToken = React.useCallback(() => {
     auth.checkToken()
     .then((data) => {
-      if (data) {
         setLoggedIn(true);
         setEmail(data.email);
-        history.push('/');
-      } else {
-        setSuccess(false);
-      }
     })
     .catch((err) => console.log(err));
   }, [history])
@@ -42,7 +36,7 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
+    Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
       .then((result) => {
         setCurrentUser(result[0]);
         setCards(result[1].reverse());
@@ -53,34 +47,29 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      history.push('/')
+      history.push('/movies')
     }
   }, [loggedIn, history]);
-
-  function handleRegister(email, password) {
-    auth
-      .register(email, password)
-      .then(() => {
-        history.push('/signin');
-        setSuccess(true);
-      })
-      .catch((err) => {
-        console.error(err);
-        setSuccess(false);
-      });
-  }
 
   function handleLogin(email, password) {
     auth
       .authorize(email, password)
       .then((data) => {
-        setEmail(email);
         setLoggedIn(true);
-        history.push('/');
       })
       .catch((err) => {
         console.error(err);
-        setSuccess(false);
+      });
+  }
+
+  function handleRegister(name, email, password) {
+    auth
+      .register(name, email, password)
+      .then(() => {
+        handleLogin(email, password);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
@@ -88,18 +77,16 @@ function App() {
     auth
     .signOut()
     .then((res) => {
-    setEmail('');
     setLoggedIn(false);
     history.push('/signin');
     })
     .catch((err) => {
       console.error(err);
-      setSuccess(false);
     });
   }
 
   function handleUpdateUser(data) {
-    api
+    mainApi
       .editUserInfo(data)
       .then((data) => {
         setCurrentUser(data);
@@ -121,7 +108,8 @@ function App() {
       <ProtectedRoute path='/movies'
       component={Movies}
       loggedIn={loggedIn}
-      onSignout={handleLogout}>
+      onSignout={handleLogout}
+      card={cards}>
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
       </ ProtectedRoute>
 
@@ -139,19 +127,22 @@ function App() {
         {!loggedIn ? <Redirect to='/' /> : <Profile />}
       </ ProtectedRoute>
 
-      <Route path='/signup'
-      onRegister={handleRegister}
-      onSignout={handleLogout}>
-        {loggedIn ? <Redirect to='/movies' /> : <Register />}
+      <Route path='/signup'>
+      {!loggedIn ? (
+        <Register handleRegister={handleRegister}
+        onSignout={handleLogout} />
+      ) : (
+        <Redirect to='/signin' />
+      )}
       </Route>
 
       <Route path='/signin'
-      onLogin={handleLogin}
+      handleLogin={handleLogin}
       onSignout={handleLogout} >
-        {loggedIn ? <Redirect to='/movies' /> : <Login />}
+        {loggedIn ? <Redirect to='/profile' /> : <Login />}
       </Route>
 
-      <Route path='/*'>
+      <Route path='*'>
         <NotFound
         loggedIn={loggedIn}
         onSignout={handleLogout}/>

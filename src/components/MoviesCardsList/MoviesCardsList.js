@@ -2,17 +2,8 @@ import React from 'react';
 import './MoviesCardsList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
-import cards from '../../utils/cards';
 
 function MoviesCardsList(props) {
-  const cards = props.cards || [];
-  const [cardsArray, setCardsArray] = React.useState(0);
-
-  const renderCards = React.useCallback(() => {
-    setCardsArray(cards);
-  }, []);
-
-  React.useEffect(() => renderCards(), [renderCards]);
 
   return (
     <section className='movies-cardlist'>
@@ -21,13 +12,9 @@ function MoviesCardsList(props) {
       ) : (
         <section className='movies-cardlist__section'>
           <ul className='cards__list'>
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
-            <MoviesCard />
+            {props.cards.map((item) => (
+                <MoviesCard card={item} key={item._id}/>
+              ))}
           </ul>
           </section>
       )}

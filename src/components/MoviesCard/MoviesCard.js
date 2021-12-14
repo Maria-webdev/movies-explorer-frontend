@@ -8,6 +8,15 @@ import SaveBtn from '../../images/save_button.svg';
 import RemoveSavedMovie from '../../images/delete-film_button.svg';
 
 function MoviesCard(props) {
+  function Time(mins) {
+    let hours = Math.trunc(mins / 60);
+    let minutes = mins % 60;
+    if (mins >= 60) {
+      return hours + 'ч ' + minutes + 'м';
+    } else {
+      return minutes + 'м';
+    }
+  }
   let SavedMovie;
   const [isSaved, setIsSaved] = React.useState(false);
   const { pathname } = useLocation();
@@ -24,10 +33,11 @@ function MoviesCard(props) {
   return (
     <section className='moviecard'>
       <div className='moviecard__block'>
-        <img className='moviecard__pic' src={ExampleCard} alt='Кадр из фильма 33 слова о дизайне' />
+        {/* сделать ссылкой */}
+        <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.thumbnail}`} alt={`Кадр из фильма ${props.card.nameRU}`} />}
         <div className='moviecard__info'>
-          <h3 className='moviecard__title'>33 слова о дизайне</h3>
-          <p className='moviecard__duration'>1ч 17м</p>
+          <h3 className='moviecard__title'>{props.card.nameRu}</h3>
+          <p className='moviecard__duration'>{Time(props.card.duration)}</p>
         </div>
         {SavedMovie ? (
            <button className='moviecard__button-delete' onClick={handleRemoveFromSaved}><img src={RemoveSavedMovie} alt='кнопка удаления фильмв из сохранённых'/></button>

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../Header/Header';
 
-function Profile(props) {
+function Profile({loggedIn, onSignout}) {
   return (
     <section className='profile'>
-      <Header />
+      <Header loggedIn={loggedIn}/>
       <h2 className='profile__heading'>Привет, Виталий!</h2>
       <div className='profile__content'>
         <form className='profile__form'>
@@ -21,7 +21,7 @@ function Profile(props) {
           <button type='submit' className='profile__form_button'>
             Редактировать
           </button>
-          <Link to='/' className='profile__link'>
+          <Link to='/' onClick={onSignout} className='profile__link'>
             Выйти из аккаунта
           </Link>
         </form>

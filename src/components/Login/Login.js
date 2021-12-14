@@ -2,8 +2,22 @@ import React from 'react';
 import './Login.css';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login(props) {
+function Login({handleLogin}) {
+
+  const { values, handleChange, errors, isValid } = useFormWithValidation ({
+    name: '',
+    email: '',
+    password: ''
+  })
+  
+   function handleSubmit(e) {
+     e.preventDefault();
+     const { email, password } = values;
+     handleLogin(email, password);
+  }
+
   return (
     <section className='login'>
       <div className='login__block'>
@@ -13,16 +27,16 @@ function Login(props) {
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 
-      <form className='login__form'>
+      <form className='login__form' onSubmit={handleSubmit} novalidate>
         <span className='login__input'>E-mail</span>
-        <input className='login__field' name='email' type='email' required></input>
-        <span className='login__input_error'>Неверно заполнено поле 'E-mail'</span>
+        <input className='login__field' autoComplete='off' onChange={handleChange} id='email-login' name='email' type='email' required value={values.email} ></input>
+        {errors.email ? (<span className='register__input_error'>errors.email</span>) : null}
 
         <span className='login__input'>Пароль</span>
-        <input className='login__field login__field_password' name='password' type='password' required minLength='8'></input>
-        <span className='login__input_error'>Неверно заполнено поле 'Пароль'</span>
+        <input className='login__field login__field_password' autoComplete='off' onChange={handleChange} id='password-login' name='password' type='password' required minLength='8' value={values.password} ></input>
+        {errors.password ? (<span className='register__input_error'>errors.password</span>) : null}
 
-        <button className='login__form_button' type='submit'>
+        <button type='submit' className={`login__form_button ${isValid ? 'login__form_button_disadled' : ''} `}>
           Войти
         </button>
 
