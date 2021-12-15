@@ -98,6 +98,10 @@
 	cursor: pointer;
 }
 
+._picked1 {
+	background-color: #ff6838;
+}
+
 .search__short_disk {
 	width: 12px;
 	height: 12px;
@@ -106,6 +110,11 @@
 	border: none;
 	border-radius: 50px;
 	align-self: center;
+}
+
+._picked2 {
+	margin-right: auto;
+	margin-left: 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -142,12 +151,4 @@
 		min-width: 300px;
 		margin: 0 auto;
 	}
-}
-
-._picked1 {
-	background-color: #ff6838;
-}
-
-._picked2 {
-	margin-right: auto;
 }

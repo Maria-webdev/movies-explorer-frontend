@@ -1,6 +1,6 @@
 class MoviesApi {
   constructor (options) {
-    this._moviesUrl = options.url;
+    this._moviesUrl = options.moviesUrl;
     this._headers = options.headers;
   }
   

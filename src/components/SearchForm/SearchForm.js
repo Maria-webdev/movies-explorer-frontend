@@ -2,16 +2,17 @@ import React from 'react';
 import './SearchForm.css';
 import SearchIcon from '../../images/search_icon.svg';
 
-function SearchForm() {
-  const [isPicked, setIsPicked] = React.useState(false);
+function SearchForm(props) {
+  const [isShortMovie, setIsShortMovie] = React.useState(false);
 
   function handlePick() {
-    setIsPicked(true);
+    setIsShortMovie(!isShortMovie);
   }
 
-  function handleUnpick() {
-    setIsPicked(false);
-  }
+  // React.useEffect(() => {
+  //   setCards(props.cards.filter((item) => item.duration < 40)
+  //   )
+  // }, [isShort])
 
   return (
     <section className='search'>
@@ -25,8 +26,8 @@ function SearchForm() {
         <div className='search__short'>
             <p className='search__short_title'>Короткометражки</p>
 
-            <div onClick={handlePick} className={`search__short_button ${isPicked ? '_picked1' : ''}`}>
-              <div className={`search__short_disk ${isPicked ? '_picked2' : ''}`}></div>
+            <div onClick={handlePick} className={`search__short_button ${isShortMovie ? '_picked1' : ''}`}>
+              <div className={`search__short_disk ${isShortMovie ? '_picked2' : ''}`}></div>
             </div>
           </div>
     

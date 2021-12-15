@@ -5,13 +5,13 @@ import SearchForm from './../SearchForm/SearchForm';
 import SavedMoviesCardList from './../SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({loggedIn}) {
+function SavedMovies({loggedIn, cards}) {
   return (
     <>
       <div>
         <section className='movies'>
           <Header loggedIn={loggedIn}/>
-          <SearchForm />
+          <SearchForm cards={cards} />
           <SavedMoviesCardList />
           <Footer />
         </section>

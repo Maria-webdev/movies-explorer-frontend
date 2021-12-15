@@ -1,8 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
-import cards from '../../utils/cards';
-import ExampleCard from '../../images/film-1.png';
 import SavedMovieBtn from '../../images/saved-film_button.svg';
 import SaveBtn from '../../images/save_button.svg';
 import RemoveSavedMovie from '../../images/delete-film_button.svg';
@@ -34,13 +32,15 @@ function MoviesCard(props) {
     <section className='moviecard'>
       <div className='moviecard__block'>
         {/* сделать ссылкой */}
-        <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.thumbnail}`} alt={`Кадр из фильма ${props.card.nameRU}`} />}
+        <a className='moviecard__box' href={`${props.card.trailerLink}`}>
+          <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.image.url}`} alt={`Кадр из фильма ${props.card.nameRu}`} />
+        </a>
         <div className='moviecard__info'>
-          <h3 className='moviecard__title'>{props.card.nameRu}</h3>
+          <h3 className='moviecard__title'>{props.card.nameRU}</h3>
           <p className='moviecard__duration'>{Time(props.card.duration)}</p>
         </div>
         {SavedMovie ? (
-           <button className='moviecard__button-delete' onClick={handleRemoveFromSaved}><img src={RemoveSavedMovie} alt='кнопка удаления фильмв из сохранённых'/></button>
+           <button className='moviecard__button-delete' onClick={handleRemoveFromSaved}><img src={RemoveSavedMovie} alt='кнопка удаления фильмов из сохранённых'/></button>
         ) : (
           <> 
         {isSaved ?

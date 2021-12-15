@@ -45,15 +45,15 @@ function App() {
     }
   }, [loggedIn]);
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      history.push('/movies')
-    }
-  }, [loggedIn, history]);
+  // React.useEffect(() => {
+  //   if (loggedIn) {
+  //     history.push('/movies')
+  //   }
+  // }, [loggedIn, history]);
 
   function handleLogin(email, password) {
     auth
-      .authorize(email, password)
+      .login(email, password)
       .then((data) => {
         setLoggedIn(true);
       })
@@ -74,11 +74,15 @@ function App() {
   }
 
   function handleLogout() {
-    auth
+    mainApi
     .signOut()
     .then((res) => {
     setLoggedIn(false);
-    history.push('/signin');
+    setCurrentUser({
+      name: "",
+      email: "",
+    });
+    history.push('/');
     })
     .catch((err) => {
       console.error(err);
@@ -109,7 +113,7 @@ function App() {
       component={Movies}
       loggedIn={loggedIn}
       onSignout={handleLogout}
-      card={cards}>
+      cards={cards}>
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
       </ ProtectedRoute>
 
@@ -123,16 +127,18 @@ function App() {
       component={Profile}
       onUpdateUser={handleUpdateUser}
       loggedIn={loggedIn}
-      onSignout={handleLogout}>
+      onSignout={handleLogout}
+      >
         {!loggedIn ? <Redirect to='/' /> : <Profile />}
       </ ProtectedRoute>
 
       <Route path='/signup'>
       {!loggedIn ? (
         <Register handleRegister={handleRegister}
-        onSignout={handleLogout} />
+        onSignout={handleLogout}
+       />
       ) : (
-        <Redirect to='/signin' />
+        <Redirect to='/profile' />
       )}
       </Route>
 

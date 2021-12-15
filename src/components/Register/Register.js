@@ -27,18 +27,18 @@ function Register({handleRegister}) {
         <h2 className='register__heading'>Добро пожаловать!</h2>
       </div>
 
-      <form className='register__form' onSubmit={handleSubmit} novalidate>
+      <form className='register__form' onSubmit={handleSubmit} noValidate>
         
         <span className='register__input'>Имя</span>
-        <input className='register__field' autocomplete='false' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name} ></input>
+        <input className='register__field' autoComplete='false' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name} ></input>
         {errors.name ? (<span className='register__input_error'>errors.name</span>) : null}
         
         <span className='register__input'>E-mail</span>
-        <input className='register__field' autocomplete='false' onChange={handleChange} id='email' name='email' type='email' required value={values.email}></input>
+        <input className='register__field' autoComplete='false' onChange={handleChange} id='email' name='email' type='email' required value={values.email}></input>
         {errors.email ? (<span className='register__input_error'>errors.email</span>) : null}
 
         <span className='register__input'>Пароль</span>
-        <input className='register__field register__field_password' autocomplete='false' onChange={handleChange} id='password' name='password' type='password' required minLength='8' value={values.password}></input>
+        <input className='register__field register__field_password' autoComplete='false' onChange={handleChange} id='password' name='password' type='password' required minLength='8' value={values.password}></input>
         {errors.password ? (<span className='register__input_error'>errors.password</span>) : null}
 
         <button type='submit' className={`register__form_button ${isValid ? 'register__form_button_disadled' : ''} `}>

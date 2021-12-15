@@ -82,7 +82,7 @@
 .register__form_button_disabled {
 	pointer-events: none;
 	cursor: default;
-	background-color: rgba(255, 104, 56, 0.2);
+	background-color: grey;
 }
 
 .register__form_button:hover {

@@ -12,7 +12,7 @@ function Movies({loggedIn, cards}) {
       <div>
         <section className='movies'>
           <Header loggedIn={loggedIn}/>
-          <SearchForm />
+          <SearchForm cards={cards} />
           <MoviesCardsList cards={cards} />
           <More />
           <Footer />

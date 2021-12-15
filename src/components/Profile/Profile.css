@@ -99,6 +99,12 @@
 	cursor: pointer;
 }
 
+.profile__form_button_disabled {
+	pointer-events: none;
+	cursor: default;
+	color: grey;
+}
+
 .profile__link {
 	margin: 16px auto 0px;
 	color: #ee3465;

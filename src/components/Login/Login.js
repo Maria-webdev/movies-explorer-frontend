@@ -12,7 +12,7 @@ function Login({handleLogin}) {
     password: ''
   })
   
-   function handleSubmit(e) {
+  function handleSubmit(e) {
      e.preventDefault();
      const { email, password } = values;
      handleLogin(email, password);
@@ -27,7 +27,7 @@ function Login({handleLogin}) {
         <h2 className='login__heading'>Рады видеть!</h2>
       </div>
 
-      <form className='login__form' onSubmit={handleSubmit} novalidate>
+      <form className='login__form' onSubmit={handleSubmit} noValidate>
         <span className='login__input'>E-mail</span>
         <input className='login__field' autoComplete='off' onChange={handleChange} id='email-login' name='email' type='email' required value={values.email} ></input>
         {errors.email ? (<span className='register__input_error'>errors.email</span>) : null}
