@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({handleLogin}) {
+function Login({onLogin}) {
 
   const { values, handleChange, errors, isValid } = useFormWithValidation ({
     name: '',
@@ -15,7 +15,7 @@ function Login({handleLogin}) {
   function handleSubmit(e) {
      e.preventDefault();
      const { email, password } = values;
-     handleLogin(email, password);
+     onLogin(email, password);
   }
 
   return (

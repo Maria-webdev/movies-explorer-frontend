@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Register({handleRegister}) {
+function Register({onRegister}) {
 
   const { values, handleChange, errors, isValid } = useFormWithValidation ({
    name: '',
@@ -14,8 +14,11 @@ function Register({handleRegister}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const { name, email, password } = values;
-    handleRegister(name, email, password);
+    if (!values.email || !values.password) {
+      return;
+    }
+    const { password, email, name } = values;
+    onRegister({ password, email, name });
   }
 
   return (
@@ -41,7 +44,7 @@ function Register({handleRegister}) {
         <input className='register__field register__field_password' autoComplete='false' onChange={handleChange} id='password' name='password' type='password' required minLength='8' value={values.password}></input>
         {errors.password ? (<span className='register__input_error'>errors.password</span>) : null}
 
-        <button type='submit' className={`register__form_button ${isValid ? 'register__form_button_disadled' : ''} `}>
+        <button type='submit' className={`register__form_button ${!isValid ? 'register__form_button_disabled' : ''} `}>
           Зарегистрироваться
         </button>
 

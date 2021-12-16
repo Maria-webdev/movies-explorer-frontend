@@ -28,7 +28,7 @@ function App() {
         setEmail(data.email);
     })
     .catch((err) => console.log(err));
-  }, [history])
+  }, [])
 
   React.useEffect(() => {
     checkToken();
@@ -45,11 +45,11 @@ function App() {
     }
   }, [loggedIn]);
 
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     history.push('/movies')
-  //   }
-  // }, [loggedIn, history]);
+  React.useEffect(() => {
+    if (loggedIn) {
+      history.push('/')
+    }
+  }, [loggedIn, history]);
 
   function handleLogin(email, password) {
     auth
@@ -69,7 +69,7 @@ function App() {
         handleLogin(email, password);
       })
       .catch((err) => {
-        console.error(err);
+        console.error(err);  
       });
   }
 
@@ -79,8 +79,8 @@ function App() {
     .then((res) => {
     setLoggedIn(false);
     setCurrentUser({
-      name: "",
-      email: "",
+      name: '',
+      email: '',
     });
     history.push('/');
     })
@@ -94,6 +94,7 @@ function App() {
       .editUserInfo(data)
       .then((data) => {
         setCurrentUser(data);
+        handleLogin(data);
       })
       .catch((err) => console.log(err));
   }
@@ -129,12 +130,12 @@ function App() {
       loggedIn={loggedIn}
       onSignout={handleLogout}
       >
-        {!loggedIn ? <Redirect to='/' /> : <Profile />}
+        {/* {!loggedIn ? <Redirect to='/' /> : <Profile />} */}
       </ ProtectedRoute>
 
       <Route path='/signup'>
       {!loggedIn ? (
-        <Register handleRegister={handleRegister}
+        <Register onRegister={handleRegister}
         onSignout={handleLogout}
        />
       ) : (
@@ -143,9 +144,9 @@ function App() {
       </Route>
 
       <Route path='/signin'
-      handleLogin={handleLogin}
+      onLogin={handleLogin}
       onSignout={handleLogout} >
-        {loggedIn ? <Redirect to='/profile' /> : <Login />}
+        {!loggedIn ? <Redirect to='/profile' /> : <Login />}
       </Route>
 
       <Route path='*'>

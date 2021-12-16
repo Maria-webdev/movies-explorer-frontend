@@ -16,7 +16,7 @@ function Profile(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.onEditProfile({ email: values.email, name: values.name });
+    props.onUpdateUser({ email: values.email, name: values.name });
   }
 
   return (
@@ -27,20 +27,16 @@ function Profile(props) {
         <form className='profile__form'>
           <div className='profile__input-box'>
             <span className='profile__input'>Имя</span>
-            <input className='profile__field_name' value={values.name || currentUser.name} name='name' type='text' minLength='2' maxLength='40' required></input>
+            <input className='profile__field_name' value={values.name || currentUser.name} onChange={handleChange} name='name' type='text' minLength='2' maxLength='40' required></input>
+            {errors.name ? (<span className='profile__input_error'>errors.name</span>) : null}
           </div>
           <div className='profile__input-box'>
             <span className='profile__input'>E-mail</span>
-            <input className='profile__field_email' value={values.email || currentUser.email} name='email' type='email' required></input>
+            <input className='profile__field_email' value={values.email || currentUser.email} onChange={handleChange} name='email' type='email' required></input>
+            {errors.email ? (<span className='profile__input_error'>errors.email</span>) : null}
           </div>
-          <button type='submit' className={`profile__form_button
-          ${!isValid && 'profile__form_button_disabled'}
-          ${
-            values.email === currentUser.email &&
-            values.name === currentUser.name &&
-            'profile__form_button_disabled'
-          }
-          ${props.isSending && 'profile__form_button_disabled'}`}>
+          <button type='submit' onSubmit={handleSubmit} className={`profile__form_button
+          ${!isValid || (values.email === currentUser.email && values.name === currentUser.name) ? 'profile__form_button_disabled' : ''}`}>
             Редактировать
           </button>
           <Link to='/' onClick={props.onSignout} className='profile__link'>

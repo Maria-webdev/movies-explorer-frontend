@@ -32,7 +32,7 @@ function MoviesCard(props) {
     <section className='moviecard'>
       <div className='moviecard__block'>
         {/* сделать ссылкой */}
-        <a className='moviecard__box' href={`${props.card.trailerLink}`}>
+        <a className='moviecard__box' href={`${props.card.trailerLink}`}  target='_blank' >
           <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.image.url}`} alt={`Кадр из фильма ${props.card.nameRu}`} />
         </a>
         <div className='moviecard__info'>
