@@ -6,14 +6,17 @@ import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
 import More from '../More/More';
 import Footer from '../Footer/Footer';
 
-function Movies({loggedIn, cards}) {
+function Movies({loggedIn, cards, handleSubmit, isShortMovie}) {
   return (
     <>
       <div>
         <section className='movies'>
           <Header loggedIn={loggedIn}/>
-          <SearchForm cards={cards} />
-          <MoviesCardsList cards={cards} />
+          <SearchForm
+                 cards={cards}
+                 handleSubmit={handleSubmit}
+                 isShortMovie={isShortMovie} />
+          <MoviesCardsList cards={cards} /> 
           <More />
           <Footer />
         </section>

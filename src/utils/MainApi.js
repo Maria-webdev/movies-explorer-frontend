@@ -33,17 +33,17 @@ class MainApi {
     .then((res) => this._getResponseData(res));
   }
 
-  changeCardStatus(cardId, isLiked) {
-      return fetch(`${this._baseUrl}/cards/likes/${cardId}`, { 
-        method: !isLiked ? 'PUT' : 'DELETE',
+  changeCardStatus(cardId, isSaved) {
+      return fetch(`${this._baseUrl}/movies/${cardId}`, { 
+        method: !isSaved ? 'PUT' : 'DELETE',
         headers: this._headers,
         credentials: 'include',
       })
       .then((res) => this._getResponseData(res));
   }
  
-  deleteCard(cardId) { 
-      return fetch(`${this._baseUrl}/cards/${cardId}`, { 
+  deleteMovieFromSaved(cardId) { 
+      return fetch(`${this._baseUrl}/saved-movies/${cardId}`, { //saved-movies или movies??
         method: 'DELETE', 
         headers: this._headers,
         credentials: 'include'

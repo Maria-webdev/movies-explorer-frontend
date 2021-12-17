@@ -13,7 +13,7 @@ function MoviesCardsList(props) {
         <section className='movies-cardlist__section'>
           <ul className='cards__list'>
             {props.cards.map((item) => (
-                <MoviesCard card={item} key={item._id}/>
+           <MoviesCard card={item} key={item.id}/>
               ))}
           </ul>
           </section>

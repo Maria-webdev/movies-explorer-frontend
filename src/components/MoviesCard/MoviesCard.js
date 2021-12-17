@@ -17,8 +17,8 @@ function MoviesCard(props) {
   }
   let SavedMovie;
   const [isSaved, setIsSaved] = React.useState(false);
-  const { pathname } = useLocation();
-  SavedMovie = pathname === '/saved-movies';
+  // const { pathname } = useLocation();
+  // SavedMovie = pathname === '/saved-movies';
 
   function handleSave() {
     setIsSaved(true);
@@ -31,9 +31,8 @@ function MoviesCard(props) {
   return (
     <section className='moviecard'>
       <div className='moviecard__block'>
-        {/* сделать ссылкой */}
-        <a className='moviecard__box' href={`${props.card.trailerLink}`}  target='_blank' >
-          <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.image.url}`} alt={`Кадр из фильма ${props.card.nameRu}`} />
+        <a className='moviecard__box' href={`${props.card.trailerLink}`}  target='_blank' rel="noreferrer" >
+          <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.image.url}`} alt={`Кадр из фильма ${props.card.nameRU}`} />
         </a>
         <div className='moviecard__info'>
           <h3 className='moviecard__title'>{props.card.nameRU}</h3>

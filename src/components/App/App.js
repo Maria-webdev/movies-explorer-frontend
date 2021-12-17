@@ -16,10 +16,15 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
+  const [isFiltered, setIsFiltered] = React.useState([]);
+
+  const [currentUser, setCurrentUser] = React.useState({
+    name: '',
+    email: '',
+  });
 
   const checkToken = React.useCallback(() => {
     auth.checkToken()
@@ -45,23 +50,6 @@ function App() {
     }
   }, [loggedIn]);
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      history.push('/')
-    }
-  }, [loggedIn, history]);
-
-  function handleLogin(email, password) {
-    auth
-      .login(email, password)
-      .then((data) => {
-        setLoggedIn(true);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
   function handleRegister(name, email, password) {
     auth
       .register(name, email, password)
@@ -73,8 +61,20 @@ function App() {
       });
   }
 
+  function handleLogin(email, password) { 
+    auth
+      .authorize(email, password)
+      .then((data) => {
+        checkToken();
+        history.push('/movies')
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   function handleLogout() {
-    mainApi
+    auth
     .signOut()
     .then((res) => {
     setLoggedIn(false);
@@ -99,6 +99,18 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleSubmit(searchValue) {
+    localStorage.setItem('searchedCards', JSON.stringify(cards.filter((item) => {
+      return item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
+    })));
+    localStorage.getItem('searchedCards')
+  }
+
+  function isShortMovie(value) {
+    value
+      ? setCards(cards.filter((item) => item.duration < 40))
+      : setIsFiltered(isFiltered.filter((item) => item.duration > 0))
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -110,19 +122,25 @@ function App() {
       component={Main}>
       </Route>
 
-      <ProtectedRoute path='/movies'
+      {/* <ProtectedRoute */}
+    <Route
+      path='/movies'
       component={Movies}
       loggedIn={loggedIn}
       onSignout={handleLogout}
-      cards={cards}>
-        {!loggedIn ? <Redirect to='/' /> : <Movies />}
-      </ ProtectedRoute>
+      cards={cards}
+      handleSubmit={handleSubmit}
+      isShortMovie={isShortMovie}
+        // {!loggedIn ? <Redirect to='/' /> : <Movies />}
+         />
 
-      <ProtectedRoute path='/saved-movies'
+           {/* <ProtectedRoute */}
+    <Route
+      path='/saved-movies'
       component={SavedMovies}
       loggedIn={loggedIn} >
-        {!loggedIn ? <Redirect to='/' /> : <SavedMovies />}
-      </ ProtectedRoute>
+        {/* {!loggedIn ? <Redirect to='/' /> : <SavedMovies />} */}
+      </ Route>
 
       <ProtectedRoute path='/profile'
       component={Profile}
@@ -130,12 +148,13 @@ function App() {
       loggedIn={loggedIn}
       onSignout={handleLogout}
       >
-        {/* {!loggedIn ? <Redirect to='/' /> : <Profile />} */}
+         {!loggedIn ? <Redirect to='/' /> : <Profile />}
       </ ProtectedRoute>
 
       <Route path='/signup'>
       {!loggedIn ? (
-        <Register onRegister={handleRegister}
+        <Register
+        onRegister={handleRegister}
         onSignout={handleLogout}
        />
       ) : (
@@ -143,11 +162,16 @@ function App() {
       )}
       </Route>
 
-      <Route path='/signin'
-      onLogin={handleLogin}
-      onSignout={handleLogout} >
-        {!loggedIn ? <Redirect to='/profile' /> : <Login />}
-      </Route>
+      <Route path='/signin'>
+      {!loggedIn ? (
+        <Login
+        onLogin={handleLogin}
+        onSignout={handleLogout}
+       />
+      ) : (
+        <Redirect to='/profile' />
+      )}
+       </Route>
 
       <Route path='*'>
         <NotFound

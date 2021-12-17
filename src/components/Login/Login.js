@@ -4,18 +4,22 @@ import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Login({onLogin}) {
+function Login(props) {
 
-  const { values, handleChange, errors, isValid } = useFormWithValidation ({
-    name: '',
-    email: '',
-    password: ''
-  })
+  const { values, handleChange, resetForm, errors, isValid } = useFormWithValidation();
   
+  React.useEffect(() => {
+    resetForm({});
+  }, [resetForm]);
+
   function handleSubmit(e) {
      e.preventDefault();
-     const { email, password } = values;
-     onLogin(email, password);
+     if (!values.email || !values.password) {
+      return;
+    }
+     const { email, password } = values;//в консоль выводятся введённые email и пароль
+     props.onLogin({email, password});//не функция?
+    
   }
 
   return (
@@ -29,14 +33,14 @@ function Login({onLogin}) {
 
       <form className='login__form' onSubmit={handleSubmit} noValidate>
         <span className='login__input'>E-mail</span>
-        <input className='login__field' autoComplete='off' onChange={handleChange} id='email-login' name='email' type='email' required value={values.email} ></input>
-        {errors.email ? (<span className='register__input_error'>errors.email</span>) : null}
+        <input className='login__field' autoComplete='new-email' onChange={handleChange} id='email-login' name='email' type='email' required value={values.email || ''} ></input>
+        {errors.email ? (<span className='register__input_error'>{errors.email}</span>) : null}
 
         <span className='login__input'>Пароль</span>
-        <input className='login__field login__field_password' autoComplete='off' onChange={handleChange} id='password-login' name='password' type='password' required minLength='8' value={values.password} ></input>
-        {errors.password ? (<span className='register__input_error'>errors.password</span>) : null}
+        <input className='login__field login__field_password' autoComplete='new-password' onChange={handleChange} id='password-login' name='password' type='password' required minLength='10' value={values.password || ''} ></input>
+        {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
-        <button type='submit' className={`login__form_button ${isValid ? 'login__form_button_disadled' : ''} `}>
+        <button type='submit' className={`login__form_button ${!isValid ? 'login__form_button_disabled' : ''} `}>
           Войти
         </button>
 

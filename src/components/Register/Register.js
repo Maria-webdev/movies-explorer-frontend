@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
-function Register({onRegister}) {
+function Register(props) {
 
-  const { values, handleChange, errors, isValid } = useFormWithValidation ({
-   name: '',
-   email: '',
-   password: ''
-  });
+  const { values, handleChange, resetForm, errors, isValid } = useFormWithValidation();
+
+  React.useEffect(() => {
+    resetForm({});
+  }, [resetForm]);
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!values.email || !values.password) {
       return;
     }
-    const { password, email, name } = values;
-    onRegister({ password, email, name });
+    const { name, email, password } = values;
+    props.onRegister({ name, email, password });
   }
 
   return (
@@ -33,16 +33,16 @@ function Register({onRegister}) {
       <form className='register__form' onSubmit={handleSubmit} noValidate>
         
         <span className='register__input'>Имя</span>
-        <input className='register__field' autoComplete='false' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name} ></input>
-        {errors.name ? (<span className='register__input_error'>errors.name</span>) : null}
+        <input className='register__field' autoComplete='new-name' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name || '' } ></input>
+        {errors.name ? (<span className='register__input_error'>{errors.name}</span>) : null}
         
         <span className='register__input'>E-mail</span>
-        <input className='register__field' autoComplete='false' onChange={handleChange} id='email' name='email' type='email' required value={values.email}></input>
-        {errors.email ? (<span className='register__input_error'>errors.email</span>) : null}
+        <input className='register__field' autoComplete='new-email' onChange={handleChange} id='email' name='email' type='email' required value={values.email || ''}></input>
+        {errors.email ? (<span className='register__input_error'>{errors.email}</span>) : null}
 
         <span className='register__input'>Пароль</span>
-        <input className='register__field register__field_password' autoComplete='false' onChange={handleChange} id='password' name='password' type='password' required minLength='8' value={values.password}></input>
-        {errors.password ? (<span className='register__input_error'>errors.password</span>) : null}
+        <input className='register__field register__field_password' autoComplete='new-password' onChange={handleChange} id='password' name='password' type='password' required minLength='10' value={values.password || ''}></input>
+        {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
         <button type='submit' className={`register__form_button ${!isValid ? 'register__form_button_disabled' : ''} `}>
           Зарегистрироваться
