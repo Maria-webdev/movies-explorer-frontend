@@ -55,6 +55,7 @@ function App() {
       .register(data)
       .then(() => {
         handleLogin(data);
+        history.push('/profile')
       })
       .catch((err) => {
         console.error(err);  
@@ -66,7 +67,7 @@ function App() {
       .authorize(data)
       .then((data) => {
         checkToken();
-        history.push('/movies')
+        history.push('/profile')
       })
       .catch((err) => {
         console.error(err);
@@ -89,12 +90,12 @@ function App() {
     });
   }
 
-  function handleUpdateUser(data) {
+  function handleUpdateUser(email, name) {
     mainApi
-      .editUserInfo(data)
-      .then((data) => {
-        setCurrentUser(data);
-        handleLogin(data);
+      .editUserInfo(email, name)
+      .then((res) => {
+        localStorage.setItem('currentUser', JSON.stringify(res));
+        setCurrentUser(res);
       })
       .catch((err) => console.log(err));
   }
@@ -122,25 +123,24 @@ function App() {
       component={Main}>
       </Route>
 
-      {/* <ProtectedRoute */}
-    <Route
+
+    <ProtectedRoute
       path='/movies'
       component={Movies}
       loggedIn={loggedIn}
       onSignout={handleLogout}
       cards={cards}
       handleSubmit={handleSubmit}
-      isShortMovie={isShortMovie}
-        // {!loggedIn ? <Redirect to='/' /> : <Movies />}
-         />
+      isShortMovie={isShortMovie}>
+        {!loggedIn ? <Redirect to='/' /> : <Movies />}
+        </ ProtectedRoute>
 
-           {/* <ProtectedRoute */}
-    <Route
+    <ProtectedRoute
       path='/saved-movies'
       component={SavedMovies}
       loggedIn={loggedIn} >
-        {/* {!loggedIn ? <Redirect to='/' /> : <SavedMovies />} */}
-      </ Route>
+        {!loggedIn ? <Redirect to='/' /> : <SavedMovies />}
+      </ ProtectedRoute>
 
       <ProtectedRoute path='/profile'
       component={Profile}

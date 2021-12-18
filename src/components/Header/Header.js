@@ -65,16 +65,16 @@ function Header({loggedIn}) {
           <img src={CloseButton} alt='кнопка закрытия скрытого меню' />
         </button>
         <div className='burger-menu__links'>
-          <Link to='/' className='burger-menu__link'>
+          <Link to='/' className='burger-menu__link'  onClick={handleCloseBurger}>
             Главная
           </Link>
-          <Link to='/movies' className='burger-menu__link _active'>
+          <Link to='/movies' className='burger-menu__link _active'  onClick={handleCloseBurger}>
             Фильмы
           </Link>
-          <Link to='/saved-movies' className='burger-menu__link'>
+          <Link to='/saved-movies' className='burger-menu__link'  onClick={handleCloseBurger}>
             Сохранённые фильмы
           </Link>
-          <Link to='/profile' className='burger-menu__link_profile'>
+          <Link to='/profile' className='burger-menu__link_profile'  onClick={handleCloseBurger}>
             <p className='burger-menu__link_profile_title'>Аккаунт</p>
             <div className='header__link_profile_image-box'><img className='burger-menu__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
           </Link>

@@ -20,19 +20,19 @@ class MainApi {
   .then((res) => this._getResponseData(res));
   }
  
-  editUserInfo(data) { 
+  editUserInfo({ email, name }) { 
     return fetch(`${this._baseUrl}/users/me`, { 
       method: 'PATCH', 
       headers: this._headers,
       credentials: 'include',
-      body: JSON.stringify({ 
-        name: data.name, 
-        email: data.email
-      }) 
+      body: JSON.stringify({
+        email,
+        name,
+      }),
     }) 
     .then((res) => this._getResponseData(res));
   }
-
+  
   changeCardStatus(cardId, isSaved) {
       return fetch(`${this._baseUrl}/movies/${cardId}`, { 
         method: !isSaved ? 'PUT' : 'DELETE',
