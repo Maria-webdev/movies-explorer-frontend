@@ -50,20 +50,20 @@ function App() {
     }
   }, [loggedIn]);
 
-  function handleRegister(name, email, password) {
+  function handleRegister(data) {
     auth
-      .register(name, email, password)
+      .register(data)
       .then(() => {
-        handleLogin(email, password);
+        handleLogin(data);
       })
       .catch((err) => {
         console.error(err);  
       });
   }
 
-  function handleLogin(email, password) { 
+  function handleLogin(data) { 
     auth
-      .authorize(email, password)
+      .authorize(data)
       .then((data) => {
         checkToken();
         history.push('/movies')
