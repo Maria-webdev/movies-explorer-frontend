@@ -17,15 +17,11 @@ function MoviesCard(props) {
   }
   let SavedMovie;
   const [isSaved, setIsSaved] = React.useState(false);
-  // const { pathname } = useLocation();
+  const { pathname } = useLocation();
   // SavedMovie = pathname === '/saved-movies';
 
-  function handleSave() {
-    setIsSaved(true);
-  }
-
-  function handleRemoveFromSaved() {
-    setIsSaved(false);
+  function handleButtonClick() {
+    return props.onChangeState(props.card);
   }
 
   return (
@@ -39,14 +35,17 @@ function MoviesCard(props) {
           <p className='moviecard__duration'>{Time(props.card.duration)}</p>
         </div>
         {SavedMovie ? (
-           <button className='moviecard__button-delete' onClick={handleRemoveFromSaved}><img src={RemoveSavedMovie} alt='кнопка удаления фильмов из сохранённых'/></button>
+           <button className='moviecard__button-delete'
+          // {onClick={handleRemoveFromSaved}
+          >
+          <img src={RemoveSavedMovie} alt='кнопка удаления фильмов из сохранённых'/></button>
         ) : (
           <> 
         {isSaved ?
       (
-        <button className='moviecard__button-saved'><img src={SavedMovieBtn} alt='фильм сохранен'/></button>
+        <button className='moviecard__button-saved' onClick={handleButtonClick}><img src={SavedMovieBtn} alt='фильм сохранен'/></button>
       ) : (
-        <button className='moviecard__button' onClick={handleSave}><img src={SaveBtn} alt='кнопка Сохранить'/></button>
+        <button className='moviecard__button' onClick={handleButtonClick}><img src={SaveBtn} alt='кнопка Сохранить'/></button>
       )
        }
       </> 

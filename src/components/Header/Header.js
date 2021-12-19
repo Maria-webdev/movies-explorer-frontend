@@ -25,7 +25,7 @@ function Header({loggedIn}) {
     <header className={`header ${isColor}`}>
       <article className='header__section'>
         <Logo />
-        {!loggedIn ? (
+        {!loggedIn && (
           <div className='header__nav'>
             <Link to='/signup' className='header__link'>
               Регистрация
@@ -36,7 +36,8 @@ function Header({loggedIn}) {
               </Link>
             </button>
           </div>
-        ) : (
+        )}
+         {loggedIn && (
           <div className='header__nav'>
             {isTablet ? (
               <button onClick={handleOpenBurger} className='header__button-burger'>

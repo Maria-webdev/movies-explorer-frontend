@@ -256,7 +256,7 @@
 	margin-bottom: 28px;
 }
 
-._active {
+.burger-menu__link:hover {
 	padding-bottom: 4px;
 	border-bottom: 2px solid #000;
 }

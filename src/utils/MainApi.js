@@ -25,10 +25,7 @@ class MainApi {
       method: 'PATCH', 
       headers: this._headers,
       credentials: 'include',
-      body: JSON.stringify({
-        email,
-        name,
-      }),
+      body: JSON.stringify({ email,name }),
     }) 
     .then((res) => this._getResponseData(res));
   }
@@ -49,7 +46,38 @@ class MainApi {
         credentials: 'include'
       }) 
       .then((res) => this._getResponseData(res));
-  } 
+  }
+
+  saveMovie(data) {
+    const movieURL = 'https://api.nomoreparties.co';
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: this._headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        country: data.country || ' ',
+        director: data.director || ' ',
+        duration: data.duration || ' ',
+        year: data.year || ' ',
+        description: data.description || ' ',
+        image: `${movieURL}${data.image.url}` || ' ',
+        trailer: data.trailerLink || ' ',
+        thumbnail: `${movieURL}${data.image.formats.thumbnail.url}` || ' ',
+        movieId: data.id || ' ',
+        nameRU: data.nameRU || ' ',
+        nameEN: data.nameEN || ' ',
+      }),
+    })
+    .then((res) => this._getResponseData(res));
+  }
+
+  getSavedMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+      headers: this._headers,
+      credentials: 'include',
+    })
+    .then((res) => this._getResponseData(res));
+  }
 } 
 
 const mainApi = new MainApi({

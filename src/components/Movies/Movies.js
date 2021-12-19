@@ -6,7 +6,7 @@ import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
 import More from '../More/More';
 import Footer from '../Footer/Footer';
 
-function Movies({loggedIn, cards, handleSubmit, isShortMovie}) {
+function Movies({loggedIn, cards, handleSubmit, isShortMovie, onMovieSave, savedMovies}) {
   return (
     <>
       <div>
@@ -16,7 +16,10 @@ function Movies({loggedIn, cards, handleSubmit, isShortMovie}) {
                  cards={cards}
                  handleSubmit={handleSubmit}
                  isShortMovie={isShortMovie} />
-          <MoviesCardsList cards={cards} /> 
+          <MoviesCardsList
+          cards={cards}
+          onMovieSave={onMovieSave}
+          savedMovies={savedMovies} /> 
           <More />
           <Footer />
         </section>

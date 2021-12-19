@@ -20,11 +20,32 @@ function App() {
   const [email, setEmail] = React.useState('');
   const history = useHistory();
   const [isFiltered, setIsFiltered] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
 
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
     email: '',
   });
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      const savedMovieLocalStorage = localStorage.getItem('savedMovies');
+
+        if (!savedMovieLocalStorage) {
+        mainApi
+          .getSavedMovies()
+          .then((res) => {
+            localStorage.setItem('savedMovies', JSON.stringify(res || []));
+            setSavedMovies(res || []);
+          })
+          .catch((err) => console.log(err));
+          }
+      else {
+        setSavedMovies(JSON.parse(savedMovieLocalStorage));
+      }
+    }
+  }, [loggedIn]);
+
 
   const checkToken = React.useCallback(() => {
     auth.checkToken()
@@ -100,6 +121,19 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleMovieSave(movie) {
+    mainApi
+      .saveMovie(movie)
+      .then((res) => {
+        localStorage.setItem(
+          'savedMovies',
+          JSON.stringify([res, ...savedMovies])
+        );
+        setSavedMovies([res, ...savedMovies]);
+      })
+      .catch((err) => console.log(err));
+  }
+
   function handleSubmit(searchValue) {
     localStorage.setItem('searchedCards', JSON.stringify(cards.filter((item) => {
       return item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
@@ -131,14 +165,21 @@ function App() {
       onSignout={handleLogout}
       cards={cards}
       handleSubmit={handleSubmit}
-      isShortMovie={isShortMovie}>
+      isShortMovie={isShortMovie}
+      onMovieSave={handleMovieSave}
+      savedMovies={savedMovies}>
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
         </ ProtectedRoute>
 
     <ProtectedRoute
       path='/saved-movies'
       component={SavedMovies}
-      loggedIn={loggedIn} >
+      loggedIn={loggedIn} 
+      onSignout={handleLogout}
+      cards={cards}
+      handleSubmit={handleSubmit}
+      isShortMovie={isShortMovie}
+      savedMovies={savedMovies}>
         {!loggedIn ? <Redirect to='/' /> : <SavedMovies />}
       </ ProtectedRoute>
 
