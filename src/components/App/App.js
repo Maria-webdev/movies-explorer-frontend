@@ -166,6 +166,7 @@ function App() {
   }
 
   function isShortMovie(value) {
+    initialCards.filter((item) => item.duration < 40);
     value
       ? setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration < 40))
       : setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration > 0))
