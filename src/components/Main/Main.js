@@ -8,12 +8,12 @@ import AboutMe from '../AboutMe/AboutMe';
 import Footer from '../Footer/Footer';
 import Portfolio from '../Portfolio/Portfolio';
 
-function Main(props) {
+function Main({loggedIn}) {
   return (
     <>
       <div>
         <section className='main'>
-          <Header />
+          <Header loggedIn={loggedIn} />
           <Promo />
           <AboutProject />
           <Techs />

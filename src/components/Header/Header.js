@@ -25,39 +25,38 @@ function Header({loggedIn}) {
     <header className={`header ${isColor}`}>
       <article className='header__section'>
         <Logo />
-        {!loggedIn && (
+        {!loggedIn ? (
           <div className='header__nav'>
-            <Link to='/signup' className='header__link'>
-              Регистрация
+          <Link to='/signup' className='header__link'>
+            Регистрация
+          </Link>
+          <button className='header__button'>
+            <Link to='/signin' className='header__button_link'>
+              Войти
             </Link>
-            <button className='header__button'>
-              <Link to='/signin' className='header__button_link'>
-                Войти
-              </Link>
-            </button>
+          </button>
           </div>
-        )}
-         {loggedIn && (
+        ) : (
           <div className='header__nav'>
-            {isTablet ? (
-              <button onClick={handleOpenBurger} className='header__button-burger'>
-                <img src={Burger} alt='кнопка открытия скрытого меню' />
-              </button>
-            ) : (
-              <>
-                <Link to='/movies' className='header__link_logged'>
-                  Фильмы
-                </Link>
-                <Link to='/saved-movies' className='header__link_logged'>
-                  Сохранённые фильмы
-                </Link>
-                <Link to='/profile' className='header__link_profile'>
-                  <p className='header__link_profile_title'>Аккаунт</p>
-                  <div className='header__link_profile_image-box'><img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
-                </Link>
-              </>
-            )}
-          </div>
+          {isTablet ? (
+            <button onClick={handleOpenBurger} className='header__button-burger'>
+              <img src={Burger} alt='кнопка открытия скрытого меню' />
+            </button>
+          ) : (
+            <>
+              <Link to='/movies' className='header__link_logged'>
+                Фильмы
+              </Link>
+              <Link to='/saved-movies' className='header__link_logged'>
+                Сохранённые фильмы
+              </Link>
+              <Link to='/profile' className='header__link_profile'>
+                <p className='header__link_profile_title'>Аккаунт</p>
+                <div className='header__link_profile_image-box'><img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
+              </Link>
+            </>
+          )}
+        </div>
         )}
       </article>
       <div className={`burger__overlay ${isBurgerMenuOpened ? '_showed' : ''}`}>
@@ -87,3 +86,14 @@ function Header({loggedIn}) {
 }
 
 export default Header;
+
+<div className='header__nav'>
+<Link to='/signup' className='header__link'>
+  Регистрация
+</Link>
+<button className='header__button'>
+  <Link to='/signin' className='header__button_link'>
+    Войти
+  </Link>
+</button>
+</div>

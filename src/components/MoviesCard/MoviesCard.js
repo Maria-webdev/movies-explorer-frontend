@@ -24,6 +24,16 @@ function MoviesCard(props) {
     return props.onChangeState(props.card);
   }
 
+  function handleSave() {
+    if (isSaved) {
+      props.deleteMovie(props.card);
+    } else if (isSaved) {
+      props.deleteMovie(props.card);
+    } else {
+      props.handleMovieSave(props.card);
+    }
+  }
+
   return (
     <section className='moviecard'>
       <div className='moviecard__block'>
@@ -35,17 +45,16 @@ function MoviesCard(props) {
           <p className='moviecard__duration'>{Time(props.card.duration)}</p>
         </div>
         {SavedMovie ? (
-           <button className='moviecard__button-delete'
-          // {onClick={handleRemoveFromSaved}
-          >
-          <img src={RemoveSavedMovie} alt='кнопка удаления фильмов из сохранённых'/></button>
+           <button className='moviecard__button-delete' onClick={handleSave}>
+            <img src={RemoveSavedMovie} alt='кнопка удаления фильмов из сохранённых'/>
+          </button>
         ) : (
           <> 
         {isSaved ?
       (
-        <button className='moviecard__button-saved' onClick={handleButtonClick}><img src={SavedMovieBtn} alt='фильм сохранен'/></button>
+        <button className='moviecard__button-saved' onClick={handleSave}><img src={SavedMovieBtn} alt='фильм сохранен'/></button>
       ) : (
-        <button className='moviecard__button' onClick={handleButtonClick}><img src={SaveBtn} alt='кнопка Сохранить'/></button>
+        <button className='moviecard__button' onClick={handleSave}><img src={SaveBtn} alt='кнопка Сохранить'/></button>
       )
        }
       </> 

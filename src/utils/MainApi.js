@@ -25,18 +25,12 @@ class MainApi {
       method: 'PATCH', 
       headers: this._headers,
       credentials: 'include',
-      body: JSON.stringify({ email,name }),
-    }) 
-    .then((res) => this._getResponseData(res));
-  }
-  
-  changeCardStatus(cardId, isSaved) {
-      return fetch(`${this._baseUrl}/movies/${cardId}`, { 
-        method: !isSaved ? 'PUT' : 'DELETE',
-        headers: this._headers,
-        credentials: 'include',
-      })
-      .then((res) => this._getResponseData(res));
+      body: JSON.stringify({
+        email,
+        name,
+      }),
+    })
+  .then((res) => this._getResponseData(res));
   }
  
   deleteMovieFromSaved(cardId) { 

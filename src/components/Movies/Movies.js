@@ -3,7 +3,6 @@ import './Movies.css';
 import Header from '../Header/Header';
 import SearchForm from './../SearchForm/SearchForm';
 import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
-import More from '../More/More';
 import Footer from '../Footer/Footer';
 
 function Movies({loggedIn, cards, handleSubmit, isShortMovie, onMovieSave, savedMovies}) {
@@ -19,8 +18,7 @@ function Movies({loggedIn, cards, handleSubmit, isShortMovie, onMovieSave, saved
           <MoviesCardsList
           cards={cards}
           onMovieSave={onMovieSave}
-          savedMovies={savedMovies} /> 
-          <More />
+          savedMovies={savedMovies} />
           <Footer />
         </section>
       </div>

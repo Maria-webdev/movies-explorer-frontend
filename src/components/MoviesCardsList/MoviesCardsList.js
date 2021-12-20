@@ -1,9 +1,42 @@
-import React from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { debounce } from 'lodash';
 import './MoviesCardsList.css';
+import '../More/More.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 function MoviesCardsList(props) {
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  function moviesCount() {
+    if (windowSize >= 901) return { count: 12, more: 3 };
+    if (windowSize >= 638) return { count: 8, more: 2 };
+    if (windowSize >= 320) return { count: 5, more: 1 };
+  }
+
+  const handler = useCallback(
+    // eslint-disable-next-line func-names
+    debounce(function () {
+      setWindowSize(window.innerWidth);
+    }, 500),
+    []
+  );
+
+  useEffect(() => {
+    const newMovies = props.cards.slice(0, moviesCount().count);
+    setFilteredMovies(newMovies);
+  }, [props.cards, windowSize]);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => handler());
+  }, []);
+
+  const onMoreButtonClick = () => {
+    setFilteredMovies(
+      props.cards.slice(0, (filteredMovies.length += moviesCount().more))
+    );
+  };
 
   return (
     <section className='movies-cardlist'>
@@ -12,19 +45,21 @@ function MoviesCardsList(props) {
       ) : (
         <section className='movies-cardlist__section'>
           <ul className='cards__list'>
-            {props.cards.map((item) => (
-           <MoviesCard
-           card={item} key={item.id}
-           onChangeState={props.onMovieSave}
-           savedMovies={props.savedMovies}
-           />
-              ))}
+            {props.cards.reduce((filmsBatch, item) => {
+              if (filmsBatch.length < filteredMovies.length) {
+                filmsBatch.push(<MoviesCard handleSaveMovie={props.handleSaveMovie} card={item} key={item.id} onChangeState={props.onMovieSave} savedMovies={props.savedMovies} deleteMovie={props.deleteMovie}/>);
+              }
+              return filmsBatch;
+            }, [])}
           </ul>
-          </section>
+          <div className='more'>
+      <button className='more__button' onClick={onMoreButtonClick} type='button'>Ещё</button>
+
+    </div>
+        </section>
       )}
-      </section>
-  
+    </section>
   );
-};
+}
 
 export default MoviesCardsList;

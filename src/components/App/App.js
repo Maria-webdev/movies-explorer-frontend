@@ -21,6 +21,7 @@ function App() {
   const history = useHistory();
   const [isFiltered, setIsFiltered] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
+  const [savedMoviesId, setSavedMoviesId] = React.useState([]);
 
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -76,7 +77,7 @@ function App() {
       .register(data)
       .then(() => {
         handleLogin(data);
-        history.push('/profile')
+        history.push('/movies')
       })
       .catch((err) => {
         console.error(err);  
@@ -88,7 +89,7 @@ function App() {
       .authorize(data)
       .then((data) => {
         checkToken();
-        history.push('/profile')
+        history.push('/movies')
       })
       .catch((err) => {
         console.error(err);
@@ -113,26 +114,44 @@ function App() {
 
   function handleUpdateUser(email, name) {
     mainApi
-      .editUserInfo(email, name)
-      .then((res) => {
-        localStorage.setItem('currentUser', JSON.stringify(res));
-        setCurrentUser(res);
-      })
-      .catch((err) => console.log(err));
-  }
+    .editUserInfo(email, name)
+    .then((res) => {
+      localStorage.setItem('currentUser', JSON.stringify(res));
+      setCurrentUser(res);
+    })
+    .catch((err) => console.log(err));
+}
 
-  function handleMovieSave(movie) {
+  function handleMovieSave(card) {
     mainApi
-      .saveMovie(movie)
+      .saveMovie(card)
       .then((res) => {
-        localStorage.setItem(
-          'savedMovies',
-          JSON.stringify([res, ...savedMovies])
-        );
-        setSavedMovies([res, ...savedMovies]);
+        setSavedMoviesId([...savedMoviesId, card.id]);
+        setSavedMovies([...savedMovies, res]);
       })
-      .catch((err) => console.log(err));
-  }
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  function deleteMovie(card) {
+    let cardId = savedMovies.filter(
+      (f) => f.cardId === card.id || f.data?.cardId === card.id
+    )[0];
+    if (cardId) {
+      cardId = cardId._id || cardId._id;
+    }
+    mainApi
+      .deleteMovieFromSaved(card.owner ? card._id : cardId)
+      .then((deleted) => {
+        setSavedMovies(savedMovies.filter((film) => film._id !== deleted._id));
+        setSavedMoviesId(savedMoviesId.filter((id) => id !== deleted.movieId));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
 
   function handleSubmit(searchValue) {
     localStorage.setItem('searchedCards', JSON.stringify(cards.filter((item) => {
@@ -154,7 +173,8 @@ function App() {
     <Switch>
 
       <Route path='/' exact
-      component={Main}>
+      component={Main}
+      loggedIn={loggedIn} >
       </Route>
 
 
@@ -166,7 +186,8 @@ function App() {
       cards={cards}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
-      onMovieSave={handleMovieSave}
+      handleSaveMovie={handleMovieSave}
+      deleteMovie={deleteMovie}
       savedMovies={savedMovies}>
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
         </ ProtectedRoute>
@@ -179,6 +200,7 @@ function App() {
       cards={cards}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
+      deleteMovie={deleteMovie}
       savedMovies={savedMovies}>
         {!loggedIn ? <Redirect to='/' /> : <SavedMovies />}
       </ ProtectedRoute>
@@ -196,7 +218,6 @@ function App() {
       {!loggedIn ? (
         <Register
         onRegister={handleRegister}
-        onSignout={handleLogout}
        />
       ) : (
         <Redirect to='/profile' />
@@ -207,7 +228,6 @@ function App() {
       {!loggedIn ? (
         <Login
         onLogin={handleLogin}
-        onSignout={handleLogout}
        />
       ) : (
         <Redirect to='/profile' />
@@ -216,8 +236,7 @@ function App() {
 
       <Route path='*'>
         <NotFound
-        loggedIn={loggedIn}
-        onSignout={handleLogout}/>
+        loggedIn={loggedIn}/>
       </Route>
 
     </Switch>
