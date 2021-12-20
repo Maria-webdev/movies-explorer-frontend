@@ -87,19 +87,19 @@
 	width: 36px;
 	height: 16px;
 	align-self: center;
-	background-color: #2be080;
 	border: none;
 	border-radius: 20px;
 	display: flex;
 	padding: 2px;
+	background-color: #ff6838;
 }
 
 .search__short_button:hover {
 	cursor: pointer;
 }
 
-._picked1 {
-	background-color: #ff6838;
+._isChoosenBackground {
+	background-color: #2be080;
 }
 
 .search__short_disk {
@@ -112,7 +112,7 @@
 	align-self: center;
 }
 
-._picked2 {
+._isChoosenButton {
 	margin-right: auto;
 	margin-left: 0;
 }

@@ -8,7 +8,7 @@ function SearchForm(props) {
   const showError = 'Введите ключевое слово';
   
   function handlePick() {
-    props.isShortMovie(isShortMovie);
+    props.isShortMovie(!isShortMovie);
     setIsShortMovie(!isShortMovie);
   }
 
@@ -38,8 +38,8 @@ function SearchForm(props) {
             <p className='search__short_title'>Короткометражки</p>
 
             <div onClick={handlePick}
-            className={`search__short_button ${isShortMovie ? '_picked1' : ''}`}>
-              <div className={`search__short_disk ${isShortMovie ? '_picked2' : ''}`}>
+            className={`search__short_button ${isShortMovie ? '_isChoosenBackground' : ''}`}>
+              <div className={`search__short_disk ${isShortMovie ? '_isChoosenButton' : ''}`}>
               </div>
             </div>
           </div>

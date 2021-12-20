@@ -16,7 +16,12 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [cards, setCards] = React.useState([]);
+  const [cards, setCards] = React.useState(
+    localStorage.getItem('searchCards')
+    ? JSON.parse(localStorage.getItem('searchCards'))
+    : []
+  );
+  const [initialCards, setInitialCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
   const [isFiltered, setIsFiltered] = React.useState([]);
@@ -47,7 +52,6 @@ function App() {
     }
   }, [loggedIn]);
 
-
   const checkToken = React.useCallback(() => {
     auth.checkToken()
     .then((data) => {
@@ -66,7 +70,8 @@ function App() {
     Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
       .then((result) => {
         setCurrentUser(result[0]);
-        setCards(result[1].reverse());
+        setIsFiltered(result[0].reverse());
+        setInitialCards(result[0].reverse());
       })
       .catch((err) => console.log(err));
     }
@@ -99,7 +104,7 @@ function App() {
   function handleLogout() {
     auth
     .signOut()
-    .then((res) => {
+    .then(() => {
     setLoggedIn(false);
     setCurrentUser({
       name: '',
@@ -152,18 +157,18 @@ function App() {
       });
   };
 
-
   function handleSubmit(searchValue) {
-    localStorage.setItem('searchedCards', JSON.stringify(cards.filter((item) => {
+    localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
       return item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
     })));
-    localStorage.getItem('searchedCards')
+    setCards(initialCards.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
+    setCards(JSON.parse(localStorage.getItem('searchedCards')));
   }
 
   function isShortMovie(value) {
     value
-      ? setCards(cards.filter((item) => item.duration < 40))
-      : setIsFiltered(isFiltered.filter((item) => item.duration > 0))
+      ? setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration < 40))
+      : setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration > 0))
   }
 
   return (
@@ -220,7 +225,7 @@ function App() {
         onRegister={handleRegister}
        />
       ) : (
-        <Redirect to='/profile' />
+        <Redirect to='/movies' />
       )}
       </Route>
 
@@ -230,7 +235,7 @@ function App() {
         onLogin={handleLogin}
        />
       ) : (
-        <Redirect to='/profile' />
+        <Redirect to='/movies' />
       )}
        </Route>
 
