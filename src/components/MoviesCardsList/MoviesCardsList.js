@@ -28,7 +28,7 @@ function MoviesCardsList(props) {
   }
 
   useEffect(() => {
-    const newMovies = props.cards.slice(0, moviesCount().count);
+    const newMovies = props?.cards?.slice(0, moviesCount().count);
     setFilteredMovies(newMovies);
   }, [props.cards, windowSize]);
 
@@ -38,7 +38,7 @@ function MoviesCardsList(props) {
 
   const onMoreButtonClick = () => {
     setFilteredMovies(
-      props.cards.slice(0, (filteredMovies.length += moviesCount().more))
+      props?.cards?.slice(0, (filteredMovies.length += moviesCount().more))
     );
   };
 
@@ -49,7 +49,7 @@ function MoviesCardsList(props) {
       ) : (
         <section className='movies-cardlist__section'>
           <ul className='cards__list'>
-            {props.cards.reduce((filmsBatch, item) => {
+            {props?.cards?.reduce((filmsBatch, item) => {
               if (filmsBatch.length < filteredMovies.length) {
                 filmsBatch.push(<MoviesCard handleSaveMovie={props.handleSaveMovie} card={item} key={item.id} onChangeState={props.onMovieSave} savedMovies={props.savedMovies} deleteMovie={props.deleteMovie}/>);
               }
@@ -57,8 +57,9 @@ function MoviesCardsList(props) {
             }, [])}
           </ul>
           <div className='more'>
+          {props.cards.length > filteredMovies.length ? (
       <button className='more__button' onClick={onMoreButtonClick} type='button'>Ещё</button>
-
+      ) : null}
     </div>
         </section>
       )}

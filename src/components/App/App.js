@@ -71,8 +71,8 @@ function App() {
       .then((result) => {
         setCurrentUser(result[0]);
         setCards(result[1].reverse());
-        setIsFiltered(result[0].reverse());
-        setInitialCards(result[0].reverse());
+        setIsFiltered(result[1].reverse());
+        setInitialCards(result[1].reverse());
       })
       .catch((err) => console.log(err));
     }
@@ -172,8 +172,8 @@ function App() {
   function isShortMovie(value) {
     initialCards.filter((item) => item.duration < 40);
     value
-      ? setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration < 40))
-      : setCards(JSON.parse(localStorage.getItem('searchedCards')).filter((item) => item.duration > 0))
+      ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
+      : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0))
   }
 
   return (
@@ -182,11 +182,10 @@ function App() {
 
     <Switch>
 
-      <Route path='/' exact
-      component={Main}
-      loggedIn={loggedIn} >
+      <Route path='/' exact>
+      <Main 
+      loggedIn={loggedIn} />
       </Route>
-
 
     <ProtectedRoute
       path='/movies'

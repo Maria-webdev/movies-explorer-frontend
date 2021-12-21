@@ -140,6 +140,10 @@
 	display: flex;
 }
 
+._color-profile {
+	background-color: #465dff;
+}
+
 .header__link_profile_image {
 	margin: auto;
 	background-color: transparent;

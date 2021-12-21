@@ -48,6 +48,15 @@
 	outline-color: #aaaaaa;
 }
 
+.search__input_error {
+	font-size: 10px;
+	line-height: 1.2;
+	color: #ee3465;
+	cursor: text;
+	position: absolute;
+	left: 30%;
+}
+
 .search__button {
 	border: none;
 	width: 80px;

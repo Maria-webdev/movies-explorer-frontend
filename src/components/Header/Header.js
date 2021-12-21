@@ -11,6 +11,7 @@ function Header({loggedIn}) {
   const { pathname } = useLocation();
   const isTablet = window.matchMedia('(max-width: 1023px)').matches;
   const isColor = pathname === '/' ? '' : '_color';
+  const isColorProfile = pathname === '/' ? '_color-profile' : '';
   const [isBurgerMenuOpened, setIsBurgerMenuOpened] = React.useState(false);
 
   function handleOpenBurger() {
@@ -52,7 +53,7 @@ function Header({loggedIn}) {
               </Link>
               <Link to='/profile' className='header__link_profile'>
                 <p className='header__link_profile_title'>Аккаунт</p>
-                <div className='header__link_profile_image-box'><img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
+                <div className={`header__link_profile_image-box ${isColorProfile}`}><img className='header__link_profile_image' src={ProfileIcon} alt='значок аккаунта' /></div>
               </Link>
             </>
           )}
@@ -86,14 +87,3 @@ function Header({loggedIn}) {
 }
 
 export default Header;
-
-<div className='header__nav'>
-<Link to='/signup' className='header__link'>
-  Регистрация
-</Link>
-<button className='header__button'>
-  <Link to='/signin' className='header__button_link'>
-    Войти
-  </Link>
-</button>
-</div>
