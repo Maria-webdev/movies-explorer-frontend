@@ -117,9 +117,9 @@ function App() {
     });
   }
 
-  function handleUpdateUser(email, name) {
+  function handleUpdateUser({email, name}) {
     mainApi
-    .editUserInfo(email, name)
+    .editUserInfo({email, name})
     .then((res) => {
       localStorage.setItem('currentUser', JSON.stringify(res));
       setCurrentUser(res);
