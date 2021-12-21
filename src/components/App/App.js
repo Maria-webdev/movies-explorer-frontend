@@ -70,6 +70,7 @@ function App() {
     Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
       .then((result) => {
         setCurrentUser(result[0]);
+        setCards(result[1].reverse());
         setIsFiltered(result[0].reverse());
         setInitialCards(result[0].reverse());
       })
@@ -131,31 +132,34 @@ function App() {
     mainApi
       .saveMovie(card)
       .then((res) => {
-        setSavedMoviesId([...savedMoviesId, card.id]);
-        setSavedMovies([...savedMovies, res]);
+        localStorage.setItem(
+          'savedMovies',
+          JSON.stringify([res, ...savedMovies])
+        );
+        setSavedMovies([res, ...savedMovies]);
       })
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 
-  function deleteMovie(card) {
-    let cardId = savedMovies.filter(
-      (f) => f.cardId === card.id || f.data?.cardId === card.id
-    )[0];
-    if (cardId) {
-      cardId = cardId._id || cardId._id;
-    }
+  function deleteMovie(movie) {
+    const savedMovie = savedMovies.find((elem) => elem.movieId === movie.id);
+
     mainApi
-      .deleteMovieFromSaved(card.owner ? card._id : cardId)
-      .then((deleted) => {
-        setSavedMovies(savedMovies.filter((film) => film._id !== deleted._id));
-        setSavedMoviesId(savedMoviesId.filter((id) => id !== deleted.movieId));
+      .deleteMovie(savedMovie._id)
+      .then((res) => {
+        localStorage.setItem(
+          'savedMovies',
+          JSON.stringify(savedMovies.filter((i) => i._id !== savedMovie._id))
+        );
+
+        setSavedMovies(savedMovies.filter((i) => i._id !== savedMovie._id));
       })
       .catch((err) => {
         console.error(err);
       });
-  };
+  }
 
   function handleSubmit(searchValue) {
     localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
@@ -188,7 +192,6 @@ function App() {
       path='/movies'
       component={Movies}
       loggedIn={loggedIn}
-      onSignout={handleLogout}
       cards={cards}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
@@ -202,7 +205,6 @@ function App() {
       path='/saved-movies'
       component={SavedMovies}
       loggedIn={loggedIn} 
-      onSignout={handleLogout}
       cards={cards}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
@@ -241,8 +243,7 @@ function App() {
        </Route>
 
       <Route path='*'>
-        <NotFound
-        loggedIn={loggedIn}/>
+        <NotFound/>
       </Route>
 
     </Switch>

@@ -23,13 +23,17 @@ function MoviesCardsList(props) {
     []
   );
 
+  const onChange = () => {
+    handler();
+  }
+
   useEffect(() => {
     const newMovies = props.cards.slice(0, moviesCount().count);
     setFilteredMovies(newMovies);
   }, [props.cards, windowSize]);
 
   useEffect(() => {
-    window.addEventListener('resize', () => handler());
+    window.addEventListener('resize', onChange);
   }, []);
 
   const onMoreButtonClick = () => {

@@ -18,7 +18,7 @@ function MoviesCard(props) {
   let SavedMovie;
   const [isSaved, setIsSaved] = React.useState(false);
   const { pathname } = useLocation();
-  // SavedMovie = pathname === '/saved-movies';
+  SavedMovie = pathname === '/saved-movies';
 
   function handleButtonClick() {
     return props.onChangeState(props.card);
