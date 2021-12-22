@@ -5,17 +5,19 @@ import SearchForm from './../SearchForm/SearchForm';
 import SavedMoviesCardList from './../SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({loggedIn, cards, handleSubmit, isShortMovie}) {
+function SavedMovies({loggedIn, handleSubmit, isShortMovie, savedMovies, deleteMovie}) {
   return (
     <>
       <div>
         <section className='movies'>
           <Header loggedIn={loggedIn}/>
           <SearchForm
-                 cards={cards}
                  handleSubmit={handleSubmit}
                  isShortMovie={isShortMovie} />
-          <SavedMoviesCardList cards={cards}/>
+          <SavedMoviesCardList
+          cards={savedMovies}
+                        deleteMovie={deleteMovie}
+          />
           <Footer />
         </section>
       </div>

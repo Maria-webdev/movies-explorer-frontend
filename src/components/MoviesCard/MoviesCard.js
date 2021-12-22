@@ -16,21 +16,16 @@ function MoviesCard(props) {
     }
   }
   let SavedMovie;
-  const [isSaved, setIsSaved] = React.useState(false);
   const { pathname } = useLocation();
   SavedMovie = pathname === '/saved-movies';
 
-  function handleButtonClick() {
-    return props.onChangeState(props.card);
-  }
-
   function handleSave() {
-    if (isSaved) {
+    if (props.isSaved) {
       props.deleteMovie(props.card);
-    } else if (isSaved) {
+    } else if (props.isSaved) {
       props.deleteMovie(props.card);
     } else {
-      props.handleMovieSave(props.card);
+      props.handleSaveMovie(props.card);
     }
   }
 
@@ -38,7 +33,7 @@ function MoviesCard(props) {
     <section className='moviecard'>
       <div className='moviecard__block'>
         <a className='moviecard__box' href={`${props.card.trailerLink}`}  target='_blank' rel="noreferrer" >
-          <img className='moviecard__pic' src={`https://api.nomoreparties.co${props.card.image.url}`} alt={`Кадр из фильма ${props.card.nameRU}`} />
+          <img className='moviecard__pic' src={props.card.image.url ? `https://api.nomoreparties.co${props.card.image.url}` : props.card.image} alt={`Кадр из фильма ${props.card.nameRU}`} />
         </a>
         <div className='moviecard__info'>
           <h3 className='moviecard__title'>{props.card.nameRU}</h3>
@@ -50,7 +45,7 @@ function MoviesCard(props) {
           </button>
         ) : (
           <> 
-        {isSaved ?
+        {props.isSaved ?
       (
         <button className='moviecard__button-saved' onClick={handleSave}><img src={SavedMovieBtn} alt='фильм сохранен'/></button>
       ) : (

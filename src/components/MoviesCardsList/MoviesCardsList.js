@@ -51,7 +51,14 @@ function MoviesCardsList(props) {
           <ul className='cards__list'>
             {props?.cards?.reduce((filmsBatch, item) => {
               if (filmsBatch.length < filteredMovies.length) {
-                filmsBatch.push(<MoviesCard handleSaveMovie={props.handleSaveMovie} card={item} key={item.id} onChangeState={props.onMovieSave} savedMovies={props.savedMovies} deleteMovie={props.deleteMovie}/>);
+                filmsBatch.push(
+                <MoviesCard
+                  handleSaveMovie={props.handleSaveMovie}
+                  card={item} key={item.id}
+                  savedMovies={props.savedMovies}
+                  deleteMovie={props.deleteMovie}
+                  isSaved={props.savedMovies.some((card) => card.nameRU.toLowerCase() === item.nameRU.toLowerCase())}
+                  />);
               }
               return filmsBatch;
             }, [])}

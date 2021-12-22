@@ -17,14 +17,13 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [cards, setCards] = React.useState(
-    localStorage.getItem('searchCards')
-    ? JSON.parse(localStorage.getItem('searchCards'))
+    localStorage.getItem('searchedCards')
+    ? JSON.parse(localStorage.getItem('searchedCards'))
     : []
   );
   const [initialCards, setInitialCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
-  const [isFiltered, setIsFiltered] = React.useState([]);
   const [savedMovies, setSavedMovies] = React.useState([]);
   const [savedMoviesId, setSavedMoviesId] = React.useState([]);
 
@@ -70,8 +69,8 @@ function App() {
     Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
       .then((result) => {
         setCurrentUser(result[0]);
-        setCards(result[1].reverse());
-        setIsFiltered(result[1].reverse());
+        // setCards(result[1].reverse());
+        // setIsFiltered(result[1].reverse());
         setInitialCards(result[1].reverse());
       })
       .catch((err) => console.log(err));
@@ -111,6 +110,7 @@ function App() {
       name: '',
       email: '',
     });
+    window.localStorage.clear();
     history.push('/');
     })
     .catch((err) => {
@@ -128,7 +128,7 @@ function App() {
     .catch((err) => console.log(err));
 }
 
-  function handleMovieSave(card) {
+  function handleSaveMovie(card) {
     mainApi
       .saveMovie(card)
       .then((res) => {
@@ -143,18 +143,16 @@ function App() {
       });
   }
 
-  function deleteMovie(movie) {
-    const savedMovie = savedMovies.find((elem) => elem.movieId === movie.id);
-
+  function deleteMovie(card) {
+    const movie = savedMovies.filter((item) => item.nameRU.toLowerCase() === card.nameRU.toLowerCase());
     mainApi
-      .deleteMovie(savedMovie._id)
+      .deleteMovieFromSaved(movie[0]._id)
       .then((res) => {
         localStorage.setItem(
           'savedMovies',
-          JSON.stringify(savedMovies.filter((i) => i._id !== savedMovie._id))
+          JSON.stringify(savedMovies.filter((i) => i._id !== movie[0]._id))
         );
-
-        setSavedMovies(savedMovies.filter((i) => i._id !== savedMovie._id));
+        setSavedMovies(savedMovies.filter((i) => i._id !== movie[0]._id));
       })
       .catch((err) => {
         console.error(err);
@@ -166,7 +164,6 @@ function App() {
       return item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
     })));
     setCards(initialCards.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
-    setCards(JSON.parse(localStorage.getItem('searchedCards')));
   }
 
   function isShortMovie(value) {
@@ -194,7 +191,7 @@ function App() {
       cards={cards}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
-      handleSaveMovie={handleMovieSave}
+      handleSaveMovie={handleSaveMovie}
       deleteMovie={deleteMovie}
       savedMovies={savedMovies}>
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
@@ -203,8 +200,7 @@ function App() {
     <ProtectedRoute
       path='/saved-movies'
       component={SavedMovies}
-      loggedIn={loggedIn} 
-      cards={cards}
+      loggedIn={loggedIn}
       handleSubmit={handleSubmit}
       isShortMovie={isShortMovie}
       deleteMovie={deleteMovie}
