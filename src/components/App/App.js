@@ -70,7 +70,7 @@ function App() {
       .then((result) => {
         setCurrentUser(result[0]);
         // setCards(result[1].reverse());
-        // setIsFiltered(result[1].reverse());
+        //setIsFiltered(result[1].reverse());
         setInitialCards(result[1].reverse());
       })
       .catch((err) => console.log(err));
@@ -193,7 +193,8 @@ function App() {
       isShortMovie={isShortMovie}
       handleSaveMovie={handleSaveMovie}
       deleteMovie={deleteMovie}
-      savedMovies={savedMovies}>
+      savedMovies={savedMovies}
+      >
         {!loggedIn ? <Redirect to='/' /> : <Movies />}
         </ ProtectedRoute>
 

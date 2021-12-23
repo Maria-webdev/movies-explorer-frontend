@@ -103,6 +103,12 @@
 	background-color: #ff6838;
 }
 
+._disabled {
+	pointer-events: none;
+	cursor: default;
+	background-color: grey;
+}
+
 .search__short_button:hover {
 	cursor: pointer;
 }

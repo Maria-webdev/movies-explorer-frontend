@@ -12,9 +12,11 @@ function SavedMovies({loggedIn, handleSubmit, isShortMovie, savedMovies, deleteM
         <section className='movies'>
           <Header loggedIn={loggedIn}/>
           <SearchForm
+           isSaved={true}
                  handleSubmit={handleSubmit}
                  isShortMovie={isShortMovie} />
           <SavedMoviesCardList
+           isSaved={true}
           cards={savedMovies}
                         deleteMovie={deleteMovie}
           />

@@ -19,7 +19,8 @@ function Movies({loggedIn, cards, handleSubmit, isShortMovie, handleSaveMovie, s
           cards={cards}
           handleSaveMovie={handleSaveMovie}
           savedMovies={savedMovies}
-          deleteMovies={deleteMovies} />
+          deleteMovies={deleteMovies}
+           />
           <Footer />
         </section>
       </div>
