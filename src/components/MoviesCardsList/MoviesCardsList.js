@@ -3,7 +3,6 @@ import { debounce } from 'lodash';
 import './MoviesCardsList.css';
 import '../More/More.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import Preloader from '../Preloader/Preloader';
 
 function MoviesCardsList(props) {
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -25,7 +24,7 @@ function MoviesCardsList(props) {
 
   const onChange = () => {
     handler();
-  }
+  };
 
   useEffect(() => {
     const newMovies = props?.cards?.slice(0, moviesCount().count);
@@ -37,39 +36,39 @@ function MoviesCardsList(props) {
   }, []);
 
   const onMoreButtonClick = () => {
-    setFilteredMovies(
-      props?.cards?.slice(0, (filteredMovies.length += moviesCount().more))
-    );
+    setFilteredMovies(props?.cards?.slice(0, (filteredMovies.length += moviesCount().more)));
   };
 
   return (
     <section className='movies-cardlist'>
-      {props.isLoading ? (
-        <Preloader />
-      ) : (
-        <section className='movies-cardlist__section'>
-          <ul className='cards__list'>
-            {props?.cards?.reduce((filmsBatch, item) => {
-              if (filmsBatch.length < filteredMovies.length) {
-                filmsBatch.push(
+      <section className='movies-cardlist__section'>
+        <ul className='cards__list'>
+          {props?.cards?.reduce((filmsBatch, item) => {
+            if (filmsBatch.length < filteredMovies.length) {
+              filmsBatch.push(
                 <MoviesCard
                   handleSaveMovie={props.handleSaveMovie}
-                  card={item} key={item.id}
+                  card={item}
+                  key={item.id}
                   savedMovies={props.savedMovies}
                   deleteMovie={props.deleteMovie}
-                  isSaved={props.savedMovies.some((card) => card.nameRU.toLowerCase() === item.nameRU.toLowerCase())}
-                  />);
-              }
-              return filmsBatch;
-            }, [])}
-          </ul>
-          <div className='more'>
-          {props.cards.length > filteredMovies.length ? (
-      <button className='more__button' onClick={onMoreButtonClick} type='button'>Ещё</button>
-      ) : null}
-    </div>
-        </section>
-      )}
+                  isSaved={props.savedMovies
+                    .some((card) => card.nameRU.toLowerCase() === item.nameRU.toLowerCase())}
+                />
+              );
+            }
+            return filmsBatch;
+          }, [])}
+        </ul>
+        <div className='more'>
+          {props.cards.length > filteredMovies.length
+          ? (
+            <button className='more__button' onClick={onMoreButtonClick} type='button'>
+              Ещё
+            </button>
+          ) : null}
+        </div>
+      </section>
     </section>
   );
 }

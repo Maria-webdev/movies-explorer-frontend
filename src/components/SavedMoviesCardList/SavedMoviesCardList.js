@@ -3,7 +3,6 @@ import { debounce } from 'lodash';
 import '../MoviesCardsList/MoviesCardsList.css';
 import MoviesCard from '../MoviesCard/MoviesCard.js';
 import './SavedMoviesCardList.css';
-import Preloader from '../Preloader/Preloader';
 import '../More/More.css';
 
 function SavedMoviesCardList(props) {
@@ -26,7 +25,7 @@ function SavedMoviesCardList(props) {
 
   const onChange = () => {
     handler();
-  }
+  };
 
   useEffect(() => {
     const newMovies = props?.cards?.slice(0, moviesCount().count);
@@ -38,41 +37,39 @@ function SavedMoviesCardList(props) {
   }, []);
 
   const onMoreButtonClick = () => {
-    setFilteredMovies(
-      props.cards.slice(0, (filteredMovies.length += moviesCount().more))
-    );
+    setFilteredMovies(props.cards.slice(0, (filteredMovies.length += moviesCount().more)));
   };
 
   return (
     <section className='movies-cardlist'>
-      {props.isLoading ? (
-          <Preloader />
-          ) : (
-          <section className='movies-cardlist__section'>
-            <ul className='cards__list'>
-            {props.cards.reduce((filmsBatch, item) => {
-                  if (filmsBatch.length < filteredMovies.length) {
-                    filmsBatch.push(
-                    <MoviesCard
-                    card={item} key={item.id}
-                    deleteMovie={props.deleteMovie}
-                    savedMovies={props.savedMovies}
-                    isSaved={true}
-                    />);
-                  }
-                  return filmsBatch;
-                }, [])}
-            </ul>
-            <div className='more'>
-          {props.cards.length > filteredMovies.length ? (
-      <button className='more__button' onClick={onMoreButtonClick} type='button'>Ещё</button>
-      ) : null}
-    </div>
-        </section>
-      )}
+      <section className='movies-cardlist__section'>
+        <ul className='cards__list'>
+          {props.cards.reduce((filmsBatch, item) => {
+            if (filmsBatch.length < filteredMovies.length) {
+              filmsBatch.push(
+              <MoviesCard
+              card={item}
+              key={item.id}
+              deleteMovie={props.deleteMovie}
+              savedMovies={props.savedMovies}
+              isSaved={true} />);
+            }
+            return filmsBatch;
+          }, [])}
+        </ul>
+        <div className='more'>
+          {props.cards.length > filteredMovies.length
+          ? (
+            <button className='more__button'
+            onClick={onMoreButtonClick}
+            type='button'>
+              Ещё
+            </button>
+          ) : null}
+        </div>
+      </section>
     </section>
-    
-);
-};
+  );
+}
 
 export default SavedMoviesCardList;
