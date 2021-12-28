@@ -76,7 +76,7 @@ function SearchForm(props) {
     
       </div>
     </section>
-    <Preloader isLoading={props.isLoading}/>
+    {props.isLoading ? <Preloader /> : null}
     </>
   );
 };
