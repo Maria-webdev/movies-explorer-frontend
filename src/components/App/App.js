@@ -13,7 +13,6 @@ import mainApi from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import * as auth from '../../utils/auth';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import Preloader from '../Preloader/Preloader';
 
 function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -21,9 +20,12 @@ function App() {
   const [initialCards, setInitialCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
   const history = useHistory();
-  const [savedMovies, setSavedMovies] = React.useState([]);
-  const [savedMoviesId, setSavedMoviesId] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [savedMovies, setSavedMovies] = React.useState(localStorage.getItem('savedMovies') ? JSON.parse(localStorage.getItem('savedMovies')) : []);
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
+  }, [])
 
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -32,9 +34,6 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-      const savedMovieLocalStorage = localStorage.getItem('savedMovies');
-
-      if (!savedMovieLocalStorage) {
         mainApi
           .getSavedMovies()
           .then((res) => {
@@ -42,9 +41,6 @@ function App() {
             setSavedMovies(res || []);
           })
           .catch((err) => console.log(err));
-      } else {
-        setSavedMovies(JSON.parse(savedMovieLocalStorage));
-      }
     }
   }, [loggedIn]);
 
@@ -56,10 +52,7 @@ function App() {
         setEmail(data.email);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+ });
 
   React.useEffect(() => {
     checkToken();
@@ -67,14 +60,14 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
+      setIsLoading(true);
       Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
         .then((result) => {
           setCurrentUser(result[0]);
-          // setCards(result[1].reverse());
-          //setIsFiltered(result[1].reverse());
-          setInitialCards(result[1].reverse());
+          setInitialCards(result[1]);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
     }
   }, [loggedIn]);
 
@@ -154,29 +147,33 @@ function App() {
       });
   }
 
-  function handleSubmit(searchValue) {
-    localStorage.setItem(
-      'searchedCards',
-      JSON.stringify(
-        initialCards.filter((item) => {
+  function handleSubmit(searchValue, isSaved) {
+    if (isSaved === true) {
+      setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
+    } else {
+      localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
           return item.nameRU.toLowerCase().includes(searchValue.toLowerCase());
         })
       )
     );
     setCards(initialCards.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
-  }
+  }}
 
-  function isShortMovie(value) {
-    initialCards.filter((item) => item.duration < 40);
-    value ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40)) : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
+  function isShortMovie(value, isSaved) {
+    if (isSaved === true) {
+      value
+      ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration < 40))
+      : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies '))?.filter((item) => item.duration > 0));
+    } else {
+    value
+    ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
+    : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
   }
+}
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-        {isLoading ? (
-          <Preloader />
-        ) : (
           <Switch>
 
             <Route path='/' exact>
@@ -187,6 +184,7 @@ function App() {
             path='/movies'
             component={Movies}
             loggedIn={loggedIn}
+            isLoading={isLoading}
             cards={cards}
             handleSubmit={handleSubmit}
             isShortMovie={isShortMovie}
@@ -202,6 +200,7 @@ function App() {
             path='/saved-movies'
             component={SavedMovies}
             loggedIn={loggedIn}
+            isLoading={isLoading}
             handleSubmit={handleSubmit}
             isShortMovie={isShortMovie}
             deleteMovie={deleteMovie}
@@ -238,8 +237,8 @@ function App() {
             <Route path='*'>
               <NotFound />
             </Route>
+
           </Switch>
-        )}
       </>
     </CurrentUserContext.Provider>
   );

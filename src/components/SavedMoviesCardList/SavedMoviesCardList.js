@@ -44,21 +44,21 @@ function SavedMoviesCardList(props) {
     <section className='movies-cardlist'>
       <section className='movies-cardlist__section'>
         <ul className='cards__list'>
-          {props.cards.reduce((filmsBatch, item) => {
-            if (filmsBatch.length < filteredMovies.length) {
+          {props?.cards?.reduce((filmsBatch, item) => {
+            if (filmsBatch?.length < filteredMovies?.length) {
               filmsBatch.push(
               <MoviesCard
               card={item}
               key={item.id}
               deleteMovie={props.deleteMovie}
-              savedMovies={props.savedMovies}
+              cards={props.cards}
               isSaved={true} />);
             }
             return filmsBatch;
           }, [])}
         </ul>
         <div className='more'>
-          {props.cards.length > filteredMovies.length
+          {props?.cards?.length > filteredMovies?.length
           ? (
             <button className='more__button'
             onClick={onMoreButtonClick}

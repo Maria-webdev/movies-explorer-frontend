@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 
 const ProtectedRoute = ({ component: Component, ...props }) => {
+  // TODO проблема с loggedIn при монтирвании on False, поэтому редирект на главную
   return (
     <Route>
       {() =>

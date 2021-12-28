@@ -44,7 +44,7 @@ function MoviesCardsList(props) {
       <section className='movies-cardlist__section'>
         <ul className='cards__list'>
           {props?.cards?.reduce((filmsBatch, item) => {
-            if (filmsBatch.length < filteredMovies.length) {
+            if (filmsBatch?.length < filteredMovies?.length) {
               filmsBatch.push(
                 <MoviesCard
                   handleSaveMovie={props.handleSaveMovie}
@@ -61,7 +61,7 @@ function MoviesCardsList(props) {
           }, [])}
         </ul>
         <div className='more'>
-          {props.cards.length > filteredMovies.length
+          {props?.cards?.length > filteredMovies?.length
           ? (
             <button className='more__button' onClick={onMoreButtonClick} type='button'>
               Ещё

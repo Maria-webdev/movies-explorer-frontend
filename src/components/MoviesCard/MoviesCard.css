@@ -127,6 +127,11 @@
 	z-index: 1;
 }
 
+.moviecard__button-saved:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
 .moviecard__button-delete {
 	width: 21px;
 	position: absolute;

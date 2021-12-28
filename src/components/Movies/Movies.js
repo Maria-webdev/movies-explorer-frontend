@@ -5,7 +5,7 @@ import SearchForm from './../SearchForm/SearchForm';
 import MoviesCardsList from '../MoviesCardsList/MoviesCardsList';
 import Footer from '../Footer/Footer';
 
-function Movies({loggedIn, cards, handleSubmit, isShortMovie, handleSaveMovie, savedMovies, deleteMovies}) {
+function Movies({loggedIn, isLoading, cards, handleSubmit, isShortMovie, handleSaveMovie, savedMovies, deleteMovie}) {
   return (
     <>
       <div>
@@ -13,13 +13,14 @@ function Movies({loggedIn, cards, handleSubmit, isShortMovie, handleSaveMovie, s
           <Header loggedIn={loggedIn}/>
           <SearchForm
                  cards={cards}
+                 isLoading={isLoading}
                  handleSubmit={handleSubmit}
                  isShortMovie={isShortMovie} />
           <MoviesCardsList
           cards={cards}
           handleSaveMovie={handleSaveMovie}
           savedMovies={savedMovies}
-          deleteMovies={deleteMovies}
+          deleteMovie={deleteMovie}
            />
           <Footer />
         </section>

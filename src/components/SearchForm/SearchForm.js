@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './SearchForm.css';
 import SearchIcon from '../../images/search_icon.svg';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import Preloader from '../Preloader/Preloader';
 
 function SearchForm(props) {
   const [isShortMovie, setIsShortMovie] = React.useState(false);
@@ -10,9 +11,10 @@ function SearchForm(props) {
   const { pathname } = useLocation();
   const isMoviesPage = pathname === '/movies';
   const isSavedMoviesPage = pathname === '/saved-movies';
+  const [isShowError, setIsShowError] = React.useState(false);
 
   function handlePick() {
-    props.isShortMovie(!isShortMovie);
+    props.isShortMovie(!isShortMovie, props.isSaved);
     setIsShortMovie(!isShortMovie);
   }
 
@@ -22,8 +24,14 @@ function SearchForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (errors.keyWord) {
+      setIsShowError(true);
+      return
+    } else {
+      setIsShowError(false);
+    }
     if (isValid) {
-      props.handleSubmit(values.keyWord);
+      props.handleSubmit(values.keyWord, props.isSaved);
     }
   }
 
@@ -45,21 +53,22 @@ function SearchForm(props) {
   // }, [isEmptyInput]);
 
   return (
+    <>
     <section className='search'>
       <div className='search__container'>
         <form onSubmit={handleSubmit} className='search__form' noValidate>
           <div className='search__input-block'>
           <input className='search__input' type='text' name='keyWord'
                    value={values.keyWord || ''} id='search' onChange={handleChange} placeholder='Фильм'
-                   autoComplete='off' minLength='1' maxLength='200' required key={values.keyWord}/>
-            {!isValid ? (<p className='search__input_error'>Нужно ввести ключевое слово</p>) : null}
+                   autoComplete='off' minLength='1' maxLength='200' required/>
+            {isShowError ? (<p className='search__input_error'>Нужно ввести ключевое слово</p>) : null}
             <button className='search__button' type='submit'><img src={SearchIcon} alt='иконка кнопки поиска'/></button>
           </div>        
         </form>
         <div className='search__short'>
             <p className='search__short_title'>Короткометражки</p>
             <div onClick={handlePick}
-            className='search__short_button'/*{`search__short_button ${isEmptyInput ? '_disabled': ''}`}*/ >
+            className={`search__short_button ${!isShortMovie ? '' : '_isChoosenBackground'}`}/*{`search__short_button ${isEmptyInput ? '_disabled': ''}`}*/ >
               <div className={`search__short_disk ${isShortMovie ? '_isChoosenButton' : ''}`}>
               </div>
             </div>
@@ -67,6 +76,8 @@ function SearchForm(props) {
     
       </div>
     </section>
+    <Preloader isLoading={props.isLoading}/>
+    </>
   );
 };
 
