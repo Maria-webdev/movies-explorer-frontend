@@ -76,6 +76,7 @@ class MainApi {
 
 const mainApi = new MainApi({
   baseUrl: 'http://localhost:3000',
+  //baseUrl: 'https://api.movies-viannat.nomoredomains.rocks',
   headers: {
   'Content-Type': 'application/json'
   },

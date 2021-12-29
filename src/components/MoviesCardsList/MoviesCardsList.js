@@ -52,8 +52,7 @@ function MoviesCardsList(props) {
                   key={item.id}
                   savedMovies={props.savedMovies}
                   deleteMovie={props.deleteMovie}
-                  isSaved={props.savedMovies
-                    .some((card) => card.nameRU.toLowerCase() === item.nameRU.toLowerCase())}
+                  isSaved={props?.savedMovies?.some((card) => card.nameRU.toLowerCase() === item.nameRU.toLowerCase())}
                 />
               );
             }
