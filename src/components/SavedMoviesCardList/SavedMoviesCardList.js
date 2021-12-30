@@ -49,7 +49,7 @@ function SavedMoviesCardList(props) {
               filmsBatch.push(
               <MoviesCard
               card={item}
-              key={item.id}
+              key={item._id}
               deleteMovie={props.deleteMovie}
               cards={props.cards}
               isSaved={true} />);

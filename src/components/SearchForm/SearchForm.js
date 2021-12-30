@@ -60,7 +60,7 @@ function SearchForm(props) {
           <div className='search__input-block'>
           <input className='search__input' type='text' name='keyWord'
                    value={values.keyWord || ''} id='search' onChange={handleChange} placeholder='Фильм'
-                   autoComplete='off' minLength='2' maxLength='200' required/>
+                   autoComplete='off' minLength='1' maxLength='200' required/>
             {isShowError ? (<p className='search__input_error'>Нужно ввести ключевое слово</p>) : null}
             <button className='search__button' type='submit'><img src={SearchIcon} alt='иконка кнопки поиска'/></button>
           </div>        

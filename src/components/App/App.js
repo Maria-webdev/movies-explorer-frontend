@@ -22,6 +22,8 @@ function App() {
   const history = useHistory();
   const [savedMovies, setSavedMovies] = React.useState(localStorage.getItem('savedMovies') ? JSON.parse(localStorage.getItem('savedMovies')) : []);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isSearchedSavedMovie, setIsSearchedSavedMovie] = React.useState(false);
+  const [isShortSavedMovie, setIsShortSavedMovie] = React.useState(false);
 
   React.useEffect(() => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
@@ -138,7 +140,7 @@ function App() {
     const movie = savedMovies.filter((item) => item.nameRU.toLowerCase() === card.nameRU.toLowerCase());
     mainApi
       .deleteMovieFromSaved(movie[0]._id)
-      .then((res) => {
+      .then(() => {
         localStorage.setItem('savedMovies', JSON.stringify(savedMovies.filter((i) => i._id !== movie[0]._id)));
         setSavedMovies(savedMovies.filter((i) => i._id !== movie[0]._id));
       })
@@ -148,23 +150,38 @@ function App() {
   }
 
   function handleSubmit(searchValue, isSaved) {
+    setIsSearchedSavedMovie(searchValue)
     if (isSaved === true) {
-      setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
+      isShortSavedMovie
+      ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+        return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+      }))
+      : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+        return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
     } else {
       localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
-          return item.nameRU.toLowerCase().includes(searchValue.toLowerCase());
+          return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
         })
       )
     );
-    setCards(initialCards.filter((item) => item.nameRU.toLowerCase().includes(searchValue.toLowerCase())));
+    setCards(initialCards.filter((item) => {
+      return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
   }}
 
   function isShortMovie(value, isSaved) {
+    setIsShortSavedMovie(value)
     if (isSaved === true) {
-      value
-      ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration < 40))
-      : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies '))?.filter((item) => item.duration > 0));
-    } else {
+
+        if (isSearchedSavedMovie) {
+          value
+          ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration < 40 && item.nameRU.toLowerCase().includes(isSearchedSavedMovie)))
+          : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration > 0 && item.nameRU.toLowerCase().includes(isSearchedSavedMovie)));
+        } else {
+          value
+          ? setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
+          : setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
+        }
+      }  else {
     value
     ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
     : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
