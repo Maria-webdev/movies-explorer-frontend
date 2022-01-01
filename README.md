@@ -1,5 +1,5 @@
 # сайт
-[ссылка на сайт](https://frontend.movies-viannat.nomoredomains.rocks)
+[ссылка на сайт](https://frontend.movies-viannat.nomoredomains.rocks/)
 
 # Getting Started with Create React App
 
