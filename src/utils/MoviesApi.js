@@ -12,12 +12,15 @@ class MoviesApi {
   } 
   
   getMovies() {
-    return fetch(`${this._moviesUrl}`, {
-      method: 'GET',
-      headers: this._headers,
-      credentials: 'include',
-    })
-    .then((res) => this._getResponseData(res));
+    return fetch(`${this._moviesUrl}`)
+    // , 
+    // {
+    //   method: 'GET',
+    //   headers: this._headers,
+    //   credentials: 'include',
+    // })
+    .then((res) => this._getResponseData(res))
+    .then(data => data);
   };
 };
   
