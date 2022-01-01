@@ -15,7 +15,7 @@ class MoviesApi {
     return fetch(`${this._moviesUrl}`, {
       method: 'GET',
       headers: this._headers,
-          
+      credentials: 'include',
     })
     .then((res) => this._getResponseData(res));
   };
@@ -26,6 +26,7 @@ const moviesApi = new MoviesApi({
   headers: {
     'Content-Type': 'application/json',
   },
+  credentials: 'include',
 });
   
 export default moviesApi;
