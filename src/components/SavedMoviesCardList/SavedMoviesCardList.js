@@ -33,7 +33,10 @@ function SavedMoviesCardList(props) {
   }, [props.cards, windowSize]);
 
   useEffect(() => {
-    window.addEventListener('resize', () => onChange);
+    window.addEventListener('resize', onChange);
+    return () => {
+      window.removeEventListener('resize', onChange);
+    };
   }, []);
 
   const onMoreButtonClick = () => {

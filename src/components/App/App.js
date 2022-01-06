@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Switch, Redirect, useHistory } from 'react-router-dom';
+import { Router, Route, IndexRoute } from 'react-router';
 import './App.css';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -88,7 +89,7 @@ function App() {
   function handleLogin(data) {
     auth
       .authorize(data)
-      .then((data) => {
+      .then(() => {
         checkToken();
         history.push('/movies');
       })
@@ -181,12 +182,16 @@ function App() {
           ? setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
           : setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
         }
-      }  else {
-    value
-    ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
-    : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
-  }
-}
+        }  else {
+          value
+          ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
+          : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
+    }
+ }
+
+//  function handleGoBack() {
+//   this.props.history.goBack()
+//  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -252,7 +257,8 @@ function App() {
               </Route>
 
             <Route path='*'>
-              <NotFound />
+              <NotFound 
+              onGoBack={handleGoBack}/>
             </Route>
 
           </Switch>

@@ -33,6 +33,9 @@ function MoviesCardsList(props) {
 
   useEffect(() => {
     window.addEventListener('resize', onChange);
+    return () => {
+      window.removeEventListener('resize', onChange);
+    };
   }, []);
 
   const onMoreButtonClick = () => {
