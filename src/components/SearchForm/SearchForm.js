@@ -1,16 +1,11 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import './SearchForm.css';
 import SearchIcon from '../../images/search_icon.svg';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import Preloader from '../Preloader/Preloader';
 
 function SearchForm(props) {
-  const [isShortMovie, setIsShortMovie] = React.useState(false);
-  const [isEmptyInput, setIsEmptyInput] = React.useState(true);
-  const { pathname } = useLocation();
-  const isMoviesPage = pathname === '/movies';
-  const isSavedMoviesPage = pathname === '/saved-movies';
+  const [isShortMovie, setIsShortMovie] = React.useState(props.isShortMovieButton);
   const [isShowError, setIsShowError] = React.useState(false);
 
   function handlePick() {
@@ -34,23 +29,6 @@ function SearchForm(props) {
       props.handleSubmit(values.keyWord, props.isSaved);
     }
   }
-
-  // кнопка Короткометражки _disabled
-  // if((props.isSaved && props.savedMovies.length >= 1) || (props.cards.length >=1 && !props.isSaved)) {}
-  // React.useEffect(() => {
-  //   if (isSavedMoviesPage) {
-  //     if  (props.savedMovies.length >= 1) {
-  //       console.log(props.savedMovies.length);
-  //       setIsEmptyInput(false);
-  //     }
-  //   } else { 
-  //     if (isMoviesPage) {
-  //     if (props.cards.length >= 1) {
-  //       setIsEmptyInput(false);
-  //       console.log(props.cards.length);
-  //     }}
-  //   }
-  // }, [isEmptyInput]);
 
   return (
     <>

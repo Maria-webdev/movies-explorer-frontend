@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch, Redirect, useHistory } from 'react-router-dom';
-import { Router, Route, IndexRoute } from 'react-router';
+import { Route } from 'react-router';
 import './App.css';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
@@ -25,6 +25,8 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isSearchedSavedMovie, setIsSearchedSavedMovie] = React.useState(false);
   const [isShortSavedMovie, setIsShortSavedMovie] = React.useState(false);
+  const [isSearched, setIsSearched] = React.useState(false);
+  const [isShortMovieButton, setIsShortMovieButton] = React.useState(false);
 
   React.useEffect(() => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
@@ -51,11 +53,13 @@ function App() {
     auth
       .checkToken()
       .then((data) => {
-        setLoggedIn(true);
         setEmail(data.email);
+        setLoggedIn(true);
+        history.push('/movies');
       })
       .catch((err) => console.log(err))
- });
+      .finally(() => setIsLoading(false));
+ }, [history]);
 
   React.useEffect(() => {
     checkToken();
@@ -79,7 +83,6 @@ function App() {
       .register(data)
       .then(() => {
         handleLogin(data);
-        history.push('/movies');
       })
       .catch((err) => {
         console.error(err);
@@ -91,7 +94,9 @@ function App() {
       .authorize(data)
       .then(() => {
         checkToken();
-        history.push('/movies');
+      })
+      .then(() => {
+        setLoggedIn(true);
       })
       .catch((err) => {
         console.error(err);
@@ -160,6 +165,7 @@ function App() {
       : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
         return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
     } else {
+      setIsSearched(true);
       localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
           return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
         })
@@ -170,6 +176,7 @@ function App() {
   }}
 
   function isShortMovie(value, isSaved) {
+    setIsShortMovieButton(value);
     setIsShortSavedMovie(value)
     if (isSaved === true) {
 
@@ -188,10 +195,6 @@ function App() {
           : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
     }
  }
-
-//  function handleGoBack() {
-//   this.props.history.goBack()
-//  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -212,10 +215,9 @@ function App() {
             isShortMovie={isShortMovie}
             handleSaveMovie={handleSaveMovie}
             deleteMovie={deleteMovie}
+            isSearched={isSearched}
+            isShortMovieButton={isShortMovieButton}
             savedMovies={savedMovies}>
-              {!loggedIn 
-              ? <Redirect to='/' /> 
-              : <Movies />}
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -223,13 +225,12 @@ function App() {
             component={SavedMovies}
             loggedIn={loggedIn}
             isLoading={isLoading}
+            isSearched={isSearched}
             handleSubmit={handleSubmit}
             isShortMovie={isShortMovie}
             deleteMovie={deleteMovie}
+            isShortMovieButton={isShortMovieButton}
             savedMovies={savedMovies}>
-              {!loggedIn
-              ? <Redirect to='/' />
-              : <SavedMovies />}
             </ProtectedRoute>
 
             <ProtectedRoute
@@ -238,9 +239,6 @@ function App() {
             onUpdateUser={handleUpdateUser}
             loggedIn={loggedIn}
             onSignout={handleLogout}>
-              {!loggedIn
-              ? <Redirect to='/' />
-              : <Profile />}
             </ProtectedRoute>
 
             <Route path='/signup'>
@@ -257,8 +255,7 @@ function App() {
               </Route>
 
             <Route path='*'>
-              <NotFound 
-              onGoBack={handleGoBack}/>
+              <NotFound />
             </Route>
 
           </Switch>
