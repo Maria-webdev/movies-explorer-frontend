@@ -46,6 +46,7 @@ function Profile(props) {
             <input className='profile__field_email' value={values.email || email} onChange={handleChange} name='email' type='email' required />
             {errors.email ? (<span className='profile__input_error'>{errors.email}</span>) : null}
           </div>
+          <span className='profile__message'>{props.message}</span>
           <button type='submit' disabled={!hasChanges || !isValid} className={`profile__form_button
           ${!isValid || !hasChanges ? 'profile__form_button_disabled' : ''}`}>
             Редактировать

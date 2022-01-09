@@ -44,6 +44,8 @@ function Register(props) {
         <input className='register__field register__field_password' autoComplete='new-password' onChange={handleChange} id='password' name='password' type='password' required minLength='10' value={values.password || ''}></input>
         {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
+        <span className='register__message'>{props.message}</span>
+
         <button type='submit' className={`register__form_button ${!isValid ? 'register__form_button_disabled' : ''} `}>
           Зарегистрироваться
         </button>

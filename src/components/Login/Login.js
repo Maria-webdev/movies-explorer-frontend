@@ -44,6 +44,8 @@ function Login(props) {
           Войти
         </button>
 
+        <span className='login__message'>{props.message}</span>
+
         <div className='login__signin'>
           <p className='login__link_title'>Ещё не зарегистрированы?</p>
           <Link to='/signup' className='login__login_link'>

@@ -27,6 +27,7 @@ function App() {
   const [isShortSavedMovie, setIsShortSavedMovie] = React.useState(false);
   const [isSearched, setIsSearched] = React.useState(false);
   const [isShortMovieButton, setIsShortMovieButton] = React.useState(false);
+  const [message, setMessage] = React.useState(null);
 
   React.useEffect(() => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
@@ -83,8 +84,15 @@ function App() {
         handleLogin(data);
       })
       .catch((err) => {
-        console.error(err);
-      });
+        if (err === '400') {
+          return setMessage('Внесены неверные данные');
+        } else if (err === '409') {
+          return setMessage('Пользователь с таким email уже существует');
+        } else if (err === '500') {
+          return setMessage('Сервер не отвечает');
+        }
+        console.log(err);
+      })
   }
 
   function handleLogin(data) {
@@ -97,8 +105,15 @@ function App() {
         setLoggedIn(true);
       })
       .catch((err) => {
-        console.error(err);
-      });
+        if (err === '400') {
+          return setMessage('Внесены неверные данные');
+        } else if (err === '401') {
+          return setMessage('Ошибка аутентификации');
+        } else if (err === '500') {
+          return setMessage('Сервер не отвечает');
+        }
+        console.log(err);
+      })
   }
 
   function handleLogout() {
@@ -124,8 +139,18 @@ function App() {
       .then((res) => {
         localStorage.setItem('currentUser', JSON.stringify(res));
         setCurrentUser(res);
+        setMessage('Изменения сохранены');
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err === '500') {
+          return setMessage('Сервер не отвечает');
+        } else if (err === '400') {
+          return setMessage('Внесены неверные данные');
+        } else if (err === '409') {
+        return setMessage('Пользователь с таким email уже существует')
+        }
+        console.log(err);
+      })
   }
 
   function handleSaveMovie(card) {
@@ -163,7 +188,11 @@ function App() {
           })
           .finally(() => setIsLoading(false));
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {
+      if (err === '500') {
+        setMessage('Сервер не отвечает');
+      }
+    console.log(err)})
     }
     
     setIsSearchedSavedMovie(searchValue)
@@ -255,19 +284,22 @@ function App() {
             component={Profile}
             onUpdateUser={handleUpdateUser}
             loggedIn={loggedIn}
+            message={message}
             onSignout={handleLogout}>
             </ProtectedRoute>
 
             <Route path='/signup'>
               {!loggedIn
               ? <Register
+              message={message}
               onRegister={handleRegister} />
               : <Redirect to='/movies' />}
               </Route>
 
             <Route path='/signin'>
               {!loggedIn
-              ? <Login onLogin={handleLogin} />
+              ? <Login onLogin={handleLogin}
+              message={message} />
               : <Redirect to='/movies' />}
               </Route>
 

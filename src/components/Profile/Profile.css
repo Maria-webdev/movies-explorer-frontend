@@ -128,6 +128,13 @@
 	bottom: -10px;
 }
 
+.profile__message {
+	margin: auto;
+	margin-bottom: 10px;
+	font-size: 13px;
+	color: #2be080;
+}
+
 @media screen and (max-width: 768px) {
 	.profile {
 		padding: 0 0 70px;

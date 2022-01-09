@@ -32,6 +32,13 @@
 	max-width: 396px;
 }
 
+.register__message {
+	margin: auto;
+	margin-bottom: 10px;
+	font-size: 13px;
+	color: #ff6838;
+}
+
 .register__input {
 	font-size: 10px;
 	line-height: 12.1px;
