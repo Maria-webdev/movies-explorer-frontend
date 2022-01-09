@@ -16,7 +16,7 @@ import * as auth from '../../utils/auth';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 function App() {
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(localStorage.getItem('loggedIn'));
   const [cards, setCards] = React.useState(localStorage.getItem('searchedCards') ? JSON.parse(localStorage.getItem('searchedCards')) : []);
   const [initialCards, setInitialCards] = React.useState([]);
   const [email, setEmail] = React.useState('');
@@ -54,12 +54,11 @@ function App() {
       .checkToken()
       .then((data) => {
         setEmail(data.email);
-        setLoggedIn(true);
-        history.push('/movies');
+        localStorage.setItem('loggedIn', 'true');
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
- }, [history]);
+ }, [loggedIn, history]);
 
   React.useEffect(() => {
     checkToken();
@@ -68,10 +67,9 @@ function App() {
   React.useEffect(() => {
     if (loggedIn) {
       setIsLoading(true);
-      Promise.all([mainApi.getUserInfo(), moviesApi.getMovies()])
+      Promise.all([mainApi.getUserInfo()])
         .then((result) => {
           setCurrentUser(result[0]);
-          setInitialCards(result[1]);
         })
         .catch((err) => console.log(err))
         .finally(() => setIsLoading(false));
@@ -156,8 +154,26 @@ function App() {
   }
 
   function handleSubmit(searchValue, isSaved) {
+    if (!isSearched) {
+      setIsLoading(true);
+      new Promise(() => {
+        moviesApi.getMovies()
+          .then((data) => {
+            setInitialCards(data);
+          })
+          .finally(() => setIsLoading(false));
+    })
+    .catch((err) => console.log(err))
+    }
+    
     setIsSearchedSavedMovie(searchValue)
     if (isSaved === true) {
+
+      // 
+      // 
+      // 
+
+
       isShortSavedMovie
       ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
         return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
@@ -165,7 +181,6 @@ function App() {
       : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
         return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
     } else {
-      setIsSearched(true);
       localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
           return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
         })
@@ -173,7 +188,9 @@ function App() {
     );
     setCards(initialCards.filter((item) => {
       return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
-  }}
+  }
+  setIsSearched(true);
+}
 
   function isShortMovie(value, isSaved) {
     setIsShortMovieButton(value);

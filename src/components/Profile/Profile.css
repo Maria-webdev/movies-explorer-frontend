@@ -40,14 +40,13 @@
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	padding-bottom: 5px;
-	margin-bottom: ;
+	position: relative;
 }
 
 .profile__input-box:first-of-type {
 	border-bottom: 1px solid #e8e8e8;
-	padding-bottom: 16px;
-	margin-bottom: 17px;
+	padding-bottom: 10px;
+	margin-bottom: 23px;
 }
 
 .profile__input-box:last-of-type {
@@ -122,10 +121,11 @@
 	line-height: 12.1px;
 	color: #ee3465;
 	display: block;
-	margin-top: 10px;
 	min-height: 12px;
 	pointer-events: none;
 	align-self: flex-start;
+	position: absolute;
+	bottom: -10px;
 }
 
 @media screen and (max-width: 768px) {

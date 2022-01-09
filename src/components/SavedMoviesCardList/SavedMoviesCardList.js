@@ -46,10 +46,10 @@ function SavedMoviesCardList(props) {
   return (
     <section className='movies-cardlist'>
       <section className='movies-cardlist__section'>
-        <ul className='cards__list'>
-        {props.isSearched && props.cards.length === 0
+      {props.isSearched && props.cards.length === 0
           ? (<p className='cards__not-found'>Ничего не найдено</p>)
-          : (props?.cards?.reduce((filmsBatch, item) => {
+          :<ul className='cards__list'>
+            {props?.cards?.reduce((filmsBatch, item) => {
             if (filmsBatch?.length < filteredMovies?.length) {
               filmsBatch.push(
               <MoviesCard
@@ -60,9 +60,11 @@ function SavedMoviesCardList(props) {
               isSaved={true} />);
             }
             return filmsBatch;
-          }, []))
-          }
+          }, [])}
+   
         </ul>
+               }
+
         <div className='more'>
           {props?.cards?.length > filteredMovies?.length
           ? (

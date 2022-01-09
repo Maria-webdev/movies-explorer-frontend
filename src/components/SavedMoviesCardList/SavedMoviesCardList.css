@@ -16,6 +16,7 @@
 	box-sizing: border-box;
 	flex-direction: column;
 	justify-content: center;
+	display: flex;
 }
 
 .cards__list {
@@ -25,6 +26,12 @@
 	justify-content: center;
 	list-style-type: none;
 	padding: 0;
+}
+
+.cards__not-found {
+	align-self: center;
+	justify-self: center;
+	margin: auto;
 }
 
 @media screen and (max-width: 900px) {
