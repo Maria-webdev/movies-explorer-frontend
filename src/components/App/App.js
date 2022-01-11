@@ -83,6 +83,7 @@ function App() {
   }
 
   function handleRegister(data) {
+    setIsLoading(true);
     auth
       .register(data)
       .then(() => {
@@ -97,10 +98,13 @@ function App() {
           return showMessage('Сервер не отвечает');
         }
         console.log(err);
-      });
+      })
+      .finally(() => 
+      setIsLoading(false));
   }
 
   function handleLogin(data) {
+    setIsLoading(true);
     auth
       .authorize(data)
       .then(() => {
@@ -118,7 +122,9 @@ function App() {
           return showMessage('Сервер не отвечает');
         }
         console.log(err);
-      });
+      })
+      .finally(() => 
+      setIsLoading(false));
   }
 
   function handleLogout() {
@@ -139,6 +145,7 @@ function App() {
   }
 
   function handleUpdateUser({ email, name }) {
+    setIsLoading(true);
     mainApi
       .editUserInfo({ email, name })
       .then((res) => {
@@ -155,7 +162,9 @@ function App() {
           return showMessage('Пользователь с таким email уже существует');
         }
         console.log(err);
-      });
+      })
+      .finally(() => 
+      setIsLoading(false));
   }
 
   function handleSaveMovie(card) {
@@ -291,6 +300,7 @@ function App() {
           <ProtectedRoute 
            path='/profile'
            component={Profile}
+           isLoading={isLoading}
            onUpdateUser={handleUpdateUser}
            loggedIn={loggedIn}
            message={message}
@@ -302,6 +312,7 @@ function App() {
             {!loggedIn 
             ? <Register
             message={message}
+            isLoading={isLoading}
             onRegister={handleRegister} />
             : <Redirect
             to='/movies' />}
@@ -312,6 +323,7 @@ function App() {
             {!loggedIn
             ? <Login
             onLogin={handleLogin}
+            isLoading={isLoading}
             message={message} />
             : <Redirect
             to='/movies' />}

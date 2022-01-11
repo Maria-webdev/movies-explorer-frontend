@@ -38,17 +38,17 @@ function Profile(props) {
         <form className='profile__form' onSubmit={handleSubmit} >
           <div className='profile__input-box'>
             <span className='profile__input'>Имя</span>
-            <input className='profile__field_name' value={values.name || name} onChange={handleChange} name='name' type='text' minLength='2' maxLength='40' required />
+            <input className='profile__field_name' value={values.name || name} disabled={props.isLoading} onChange={handleChange} name='name' type='text' minLength='2' maxLength='40' required />
             {errors.name ? (<span className='profile__input_error'>{errors.name}</span>) : null}
           </div>
           <div className='profile__input-box'>
             <span className='profile__input'>E-mail</span>
-            <input className='profile__field_email' value={values.email || email} onChange={handleChange} name='email' type='email' required />
+            <input className='profile__field_email' value={values.email || email} disabled={props.isLoading} onChange={handleChange} name='email' type='email' required />
             {errors.email ? (<span className='profile__input_error'>{errors.email}</span>) : null}
           </div>
           <span className='profile__message'>{props.message}</span>
           <button type='submit' disabled={!hasChanges || !isValid} className={`profile__form_button
-          ${!isValid || !hasChanges ? 'profile__form_button_disabled' : ''}`}>
+          ${!isValid || !hasChanges || props.isLoading ? 'profile__form_button_disabled' : ''}`}>
             Редактировать
           </button>
           <Link to='/' onClick={props.onSignout} className='profile__link'>

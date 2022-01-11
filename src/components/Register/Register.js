@@ -33,20 +33,20 @@ function Register(props) {
       <form className='register__form' onSubmit={handleSubmit} noValidate>
         
         <span className='register__input'>Имя</span>
-        <input className='register__field' autoComplete='new-name' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name || '' } ></input>
+        <input className='register__field' disabled={props.isLoading} autoComplete='new-name' onChange={handleChange} id='name' name='name' type='text' minLength='2' maxLength='40' required value={values.name || '' } ></input>
         {errors.name ? (<span className='register__input_error'>{errors.name}</span>) : null}
         
         <span className='register__input'>E-mail</span>
-        <input className='register__field' autoComplete='new-email' onChange={handleChange} id='email' name='email' type='email' required value={values.email || ''}></input>
+        <input className='register__field' disabled={props.isLoading} autoComplete='new-email' onChange={handleChange} id='email' name='email' type='email' required value={values.email || ''}></input>
         {errors.email ? (<span className='register__input_error'>{errors.email}</span>) : null}
 
         <span className='register__input'>Пароль</span>
-        <input className='register__field register__field_password' autoComplete='new-password' onChange={handleChange} id='password' name='password' type='password' required minLength='10' value={values.password || ''}></input>
+        <input className='register__field register__field_password' disabled={props.isLoading} autoComplete='new-password' onChange={handleChange} id='password' name='password' type='password' required minLength='10' value={values.password || ''}></input>
         {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
         <span className='register__message'>{props.message}</span>
       
-        <button type='submit' className={`register__form_button ${!isValid ? 'register__form_button_disabled' : ''} `}>
+        <button type='submit' className={`register__form_button ${!isValid || props.isLoading ? 'register__form_button_disabled' : ''} `}>
           Зарегистрироваться
         </button>
 

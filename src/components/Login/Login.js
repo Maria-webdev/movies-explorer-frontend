@@ -39,7 +39,7 @@ function Login(props) {
         <input className='login__field login__field_password' autoComplete='new-password' onChange={handleChange} id='password-login' name='password' type='password' required minLength='10' value={values.password || ''} ></input>
         {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
-        <button type='submit' className={`login__form_button ${!isValid ? 'login__form_button_disabled' : ''} `}>
+        <button type='submit' className={`login__form_button ${!isValid || props.isLoading ? 'login__form_button_disabled' : ''} `}>
           Войти
         </button>
 
