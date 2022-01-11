@@ -31,7 +31,7 @@ function App() {
 
   React.useEffect(() => {
     const savedMovies = JSON.parse(localStorage.getItem('savedMovies'));
-  }, [])
+  }, []);
 
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
@@ -40,13 +40,13 @@ function App() {
 
   React.useEffect(() => {
     if (loggedIn) {
-        mainApi
-          .getSavedMovies()
-          .then((res) => {
-            localStorage.setItem('savedMovies', JSON.stringify(res || []));
-            setSavedMovies(res || []);
-          })
-          .catch((err) => console.log(err));
+      mainApi
+        .getSavedMovies()
+        .then((res) => {
+          localStorage.setItem('savedMovies', JSON.stringify(res || []));
+          setSavedMovies(res || []);
+        })
+        .catch((err) => console.log(err));
     }
   }, [loggedIn]);
 
@@ -59,7 +59,7 @@ function App() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
- }, [loggedIn, history]);
+  }, [loggedIn, history]);
 
   React.useEffect(() => {
     checkToken();
@@ -77,22 +77,29 @@ function App() {
     }
   }, [loggedIn]);
 
+  function showMessage(message) {
+    setMessage(message);
+    setTimeout(() => setMessage(''), 10000);
+  }
+
   function handleRegister(data) {
     auth
       .register(data)
       .then(() => {
         handleLogin(data);
       })
-      .catch((err) => {
-        if (err === '400') {
-          return setMessage('Внесены неверные данные');
-        } else if (err === '409') {
-          return setMessage('Пользователь с таким email уже существует');
-        } else if (err === '500') {
-          return setMessage('Сервер не отвечает');
-        }
-        console.log(err);
-      })
+      // .catch((err) => {
+      //   if (err === '400') {
+      //     return showMessage('Внесены неверные данные');
+      //   } else if (err === '409') {
+      //     return showMessage('Пользователь с таким email уже существует');//showMessage({message:'Пользователь с таким email уже существует'});
+      //   } else if (err === '500') {
+      //     return showMessage('Сервер не отвечает');
+      //   }
+      // })
+      .catch((err) => showMessage('Внесены неверные данные')
+      // console.log(err)
+      );
   }
 
   function handleLogin(data) {
@@ -106,14 +113,14 @@ function App() {
       })
       .catch((err) => {
         if (err === '400') {
-          return setMessage('Внесены неверные данные');
+          return showMessage('Внесены неверные данные');
         } else if (err === '401') {
-          return setMessage('Ошибка аутентификации');
+          return showMessage('Ошибка аутентификации');
         } else if (err === '500') {
-          return setMessage('Сервер не отвечает');
+          return showMessage('Сервер не отвечает');
         }
         console.log(err);
-      })
+      });
   }
 
   function handleLogout() {
@@ -139,18 +146,18 @@ function App() {
       .then((res) => {
         localStorage.setItem('currentUser', JSON.stringify(res));
         setCurrentUser(res);
-        setMessage('Изменения сохранены');
+        showMessage('Изменения сохранены');
       })
       .catch((err) => {
         if (err === '500') {
-          return setMessage('Сервер не отвечает');
+          return showMessage('Сервер не отвечает');
         } else if (err === '400') {
-          return setMessage('Внесены неверные данные');
+          showMessage('Внесены неверные данные');
         } else if (err === '409') {
-        return setMessage('Пользователь с таким email уже существует')
+          return showMessage('Пользователь с таким email уже существует');
         }
         console.log(err);
-      })
+      });
   }
 
   function handleSaveMovie(card) {
@@ -182,76 +189,83 @@ function App() {
     if (!isSearched) {
       setIsLoading(true);
       new Promise(() => {
-        moviesApi.getMovies()
+        moviesApi
+          .getMovies()
           .then((data) => {
             setInitialCards(data);
           })
           .finally(() => setIsLoading(false));
-    })
-    .catch((err) => {
-      if (err === '500') {
-        setMessage('Сервер не отвечает');
-      }
-    console.log(err)})
+      }).catch((err) => {
+        if (err === '500') {
+          showMessage('Сервер не отвечает');
+        }
+        console.log(err);
+      });
     }
-    
-    setIsSearchedSavedMovie(searchValue)
+
+    setIsSearchedSavedMovie(searchValue);
     if (isSaved === true) {
-
-      // 
-      // 
-      // 
-
+      //
+      //
+      //
 
       isShortSavedMovie
-      ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-        return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
-      }))
-      : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
-        return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
+        ? setSavedMovies(
+            JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+              return item.duration < 40 && item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+            })
+          )
+        : setSavedMovies(
+            JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => {
+              return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+            })
+          );
     } else {
-      localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
+      localStorage.setItem(
+        'searchedCards',
+        JSON.stringify(
+          initialCards.filter((item) => {
+            return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
+          })
+        )
+      );
+      setCards(
+        initialCards.filter((item) => {
           return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
         })
-      )
-    );
-    setCards(initialCards.filter((item) => {
-      return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase())}));
+      );
+    }
+    setIsSearched(true);
   }
-  setIsSearched(true);
-}
 
   function isShortMovie(value, isSaved) {
     setIsShortMovieButton(value);
-    setIsShortSavedMovie(value)
+    setIsShortSavedMovie(value);
     if (isSaved === true) {
-
-        if (isSearchedSavedMovie) {
-          value
+      if (isSearchedSavedMovie) {
+        value
           ? setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration < 40 && item.nameRU.toLowerCase().includes(isSearchedSavedMovie)))
           : setSavedMovies(JSON.parse(localStorage.getItem('savedMovies'))?.filter((item) => item.duration > 0 && item.nameRU.toLowerCase().includes(isSearchedSavedMovie)));
-        } else {
-          value
-          ? setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
-          : setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
-        }
-        }  else {
-          value
-          ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40))
-          : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
+      } else {
+        value ? setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40)) : setSavedMovies(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
+      }
+    } else {
+      value ? setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration < 40)) : setCards(JSON.parse(localStorage.getItem('searchedCards'))?.filter((item) => item.duration > 0));
     }
- }
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <>
-          <Switch>
+        <Switch>
 
-            <Route path='/' exact>
-              <Main loggedIn={loggedIn} />
-            </Route>
+          <Route
+          path='/' exact>
+            <Main
+            loggedIn={loggedIn} />
+          </Route>
 
-            <ProtectedRoute
+          <ProtectedRoute
             path='/movies'
             component={Movies}
             loggedIn={loggedIn}
@@ -263,10 +277,10 @@ function App() {
             deleteMovie={deleteMovie}
             isSearched={isSearched}
             isShortMovieButton={isShortMovieButton}
-            savedMovies={savedMovies}>
-            </ProtectedRoute>
+            savedMovies={savedMovies}
+          ></ProtectedRoute>
 
-            <ProtectedRoute
+          <ProtectedRoute
             path='/saved-movies'
             component={SavedMovies}
             loggedIn={loggedIn}
@@ -276,38 +290,44 @@ function App() {
             isShortMovie={isShortMovie}
             deleteMovie={deleteMovie}
             isShortMovieButton={isShortMovieButton}
-            savedMovies={savedMovies}>
-            </ProtectedRoute>
+            savedMovies={savedMovies}
+          ></ProtectedRoute>
 
-            <ProtectedRoute
-            path='/profile'
-            component={Profile}
-            onUpdateUser={handleUpdateUser}
-            loggedIn={loggedIn}
+          <ProtectedRoute 
+           path='/profile'
+           component={Profile}
+           onUpdateUser={handleUpdateUser}
+           loggedIn={loggedIn}
+           message={message}
+           onSignout={handleLogout}>
+           </ProtectedRoute>
+
+          <Route
+          path='/signup'>
+            {!loggedIn 
+            ? <Register
             message={message}
-            onSignout={handleLogout}>
-            </ProtectedRoute>
-
-            <Route path='/signup'>
-              {!loggedIn
-              ? <Register
-              message={message}
-              onRegister={handleRegister} />
-              : <Redirect to='/movies' />}
-              </Route>
-
-            <Route path='/signin'>
-              {!loggedIn
-              ? <Login onLogin={handleLogin}
-              message={message} />
-              : <Redirect to='/movies' />}
-              </Route>
-
-            <Route path='*'>
-              <NotFound />
+            onRegister={handleRegister} />
+            : <Redirect
+            to='/movies' />}
             </Route>
 
-          </Switch>
+          <Route
+          path='/signin'>
+            {!loggedIn
+            ? <Login
+            onLogin={handleLogin}
+            message={message} />
+            : <Redirect
+            to='/movies' />}
+            </Route>
+
+          <Route
+          path='*'>
+            <NotFound />
+          </Route>
+
+        </Switch>
       </>
     </CurrentUserContext.Provider>
   );

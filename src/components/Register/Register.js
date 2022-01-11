@@ -45,7 +45,7 @@ function Register(props) {
         {errors.password ? (<span className='register__input_error'>{errors.password}</span>) : null}
 
         <span className='register__message'>{props.message}</span>
-
+      
         <button type='submit' className={`register__form_button ${!isValid ? 'register__form_button_disabled' : ''} `}>
           Зарегистрироваться
         </button>

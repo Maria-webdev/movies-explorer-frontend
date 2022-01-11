@@ -3,15 +3,16 @@ import { debounce } from 'lodash';
 import './MoviesCardsList.css';
 import '../More/More.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { LargeWindowSize, MediumWindowSize, SmallWindowSize } from '../../utils/consts';
 
 function MoviesCardsList(props) {
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   function moviesCount() {
-    if (windowSize >= 901) return { count: 12, more: 3 };
-    if (windowSize >= 638) return { count: 8, more: 2 };
-    if (windowSize >= 320) return { count: 5, more: 1 };
+    if (windowSize >= LargeWindowSize) return { count: 12, more: 3 };
+    if (windowSize >= MediumWindowSize) return { count: 8, more: 2 };
+    if (windowSize >= SmallWindowSize) return { count: 5, more: 1 };
   }
 
   const handler = useCallback(

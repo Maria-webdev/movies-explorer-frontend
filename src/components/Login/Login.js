@@ -17,9 +17,8 @@ function Login(props) {
      if (!values.email || !values.password) {
       return;
     }
-     const { email, password } = values;//в консоль выводятся введённые email и пароль
-     props.onLogin({email, password});//не функция?
-    
+     const { email, password } = values;
+     props.onLogin({email, password});
   }
 
   return (
