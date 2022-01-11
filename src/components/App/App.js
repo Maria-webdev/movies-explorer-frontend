@@ -88,18 +88,16 @@ function App() {
       .then(() => {
         handleLogin(data);
       })
-      // .catch((err) => {
-      //   if (err === '400') {
-      //     return showMessage('Внесены неверные данные');
-      //   } else if (err === '409') {
-      //     return showMessage('Пользователь с таким email уже существует');//showMessage({message:'Пользователь с таким email уже существует'});
-      //   } else if (err === '500') {
-      //     return showMessage('Сервер не отвечает');
-      //   }
-      // })
-      .catch((err) => showMessage('Внесены неверные данные')
-      // console.log(err)
-      );
+      .catch((err) => {
+        if (err === 'Ошибка: 400') {
+          return showMessage('Внесены неверные данные');
+        } else if (err === 'Ошибка: 409') {
+          return showMessage('Пользователь с таким email уже существует');
+        } else if (err === 'Ошибка: 500') {
+          return showMessage('Сервер не отвечает');
+        }
+        console.log(err);
+      });
   }
 
   function handleLogin(data) {
@@ -112,11 +110,11 @@ function App() {
         setLoggedIn(true);
       })
       .catch((err) => {
-        if (err === '400') {
+        if (err === 'Ошибка: 400') {
           return showMessage('Внесены неверные данные');
-        } else if (err === '401') {
+        } else if (err === 'Ошибка: 401') {
           return showMessage('Ошибка аутентификации');
-        } else if (err === '500') {
+        } else if (err === 'Ошибка: 500') {
           return showMessage('Сервер не отвечает');
         }
         console.log(err);
@@ -149,11 +147,11 @@ function App() {
         showMessage('Изменения сохранены');
       })
       .catch((err) => {
-        if (err === '500') {
+        if (err === 'Ошибка: 500') {
           return showMessage('Сервер не отвечает');
-        } else if (err === '400') {
+        } else if (err === 'Ошибка: 400') {
           showMessage('Внесены неверные данные');
-        } else if (err === '409') {
+        } else if (err === 'Ошибка: 409') {
           return showMessage('Пользователь с таким email уже существует');
         }
         console.log(err);
@@ -196,7 +194,7 @@ function App() {
           })
           .finally(() => setIsLoading(false));
       }).catch((err) => {
-        if (err === '500') {
+        if (err === 'Ошибка: 500') {
           showMessage('Сервер не отвечает');
         }
         console.log(err);
@@ -221,10 +219,7 @@ function App() {
             })
           );
     } else {
-      localStorage.setItem(
-        'searchedCards',
-        JSON.stringify(
-          initialCards.filter((item) => {
+      localStorage.setItem('searchedCards', JSON.stringify(initialCards.filter((item) => {
             return item.nameRU.toLowerCase().includes(searchValue.trim().toLowerCase());
           })
         )
