@@ -19,6 +19,7 @@ function Movies({isShortMovieButton, isSearched, loggedIn, isLoading, cards, han
                  isShortMovie={isShortMovie} />
           <MoviesCardsList
           isSearched={isSearched}
+          isLoading={isLoading}
           cards={cards}
           handleSaveMovie={handleSaveMovie}
           savedMovies={savedMovies}

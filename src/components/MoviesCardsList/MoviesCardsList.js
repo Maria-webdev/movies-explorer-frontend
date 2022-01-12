@@ -46,7 +46,7 @@ function MoviesCardsList(props) {
   return (
     <section className='movies-cardlist'>
       <section className='movies-cardlist__section'>
-      {props.isSearched && props.cards.length === 0
+      {props.isSearched && props.cards.length === 0 && !props.isLoading
           ? (<p className='cards__not-found'>Ничего не найдено</p>) 
           : <ul className='cards__list'>
           {props?.cards?.reduce((filmsBatch, item) => {

@@ -5,7 +5,7 @@ import SearchForm from './../SearchForm/SearchForm';
 import SavedMoviesCardList from './../SavedMoviesCardList/SavedMoviesCardList';
 import Footer from '../Footer/Footer';
 
-function SavedMovies({isShortMovieButton, isSearched, loggedIn, isLoading, handleSubmit, isShortMovie, savedMovies, deleteMovie }) {
+function SavedMovies({isShortSavedMovieButton, isSearched, loggedIn, isLoading, handleSubmit, isShortMovie, savedMovies, deleteMovie }) {
   return (
     <>
       <div>
@@ -14,7 +14,7 @@ function SavedMovies({isShortMovieButton, isSearched, loggedIn, isLoading, handl
           loggedIn={loggedIn} />
           <SearchForm
           isSaved={true}
-          isShortMovieButton={isShortMovieButton}
+          isShortMovieButton={isShortSavedMovieButton}
           cards={savedMovies}
           handleSubmit={handleSubmit}
           isShortMovie={isShortMovie} />
