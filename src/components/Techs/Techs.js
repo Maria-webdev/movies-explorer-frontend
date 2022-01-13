@@ -12,25 +12,25 @@ function Techs() {
         </div>
         <ul className='techs-nav-list'>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>HTML</p>
+            <a className='techs-nav-list__text' href='https://developer.mozilla.org/ru/docs/Web/HTML'>HTML</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>CSS</p>
+            <a className='techs-nav-list__text' href='https://www.w3schools.com/css/'>CSS</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>JS</p>
+            <a className='techs-nav-list__text' href='https://developer.mozilla.org/ru/docs/Web/JavaScript'>JS</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>React</p>
+            <a className='techs-nav-list__text' href='https://ru.react.js.org/'>React</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>Git</p>
+            <a className='techs-nav-list__text' href='https://git-scm.com/'>Git</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>Express.js</p>
+            <a className='techs-nav-list__text' href='https://expressjs.com/ru/'>Express.js</a>
           </li>
           <li className='techs-nav-list__item'>
-            <p className='techs-nav-list__text'>mongoDB</p>
+            <a className='techs-nav-list__text' href='https://www.mongodb.com/'>mongoDB</a>
           </li>
         </ul>
       </div>

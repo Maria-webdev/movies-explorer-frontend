@@ -140,6 +140,10 @@
 	display: flex;
 }
 
+._color-profile {
+	background-color: #465dff;
+}
+
 .header__link_profile_image {
 	margin: auto;
 	background-color: transparent;
@@ -256,7 +260,7 @@
 	margin-bottom: 28px;
 }
 
-._active {
+.burger-menu__link:hover {
 	padding-bottom: 4px;
 	border-bottom: 2px solid #000;
 }

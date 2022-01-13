@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Logo.css';
 import LogoIcon from '../../images/logo.svg';
 
-function Logo() {
+function Logo(props) {
   return (
     <section className='logo'>
       <Link to='/'>

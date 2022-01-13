@@ -77,15 +77,17 @@
 	justify-content: center;
 	align-items: center;
 }
-/* 
-.techs-nav-list__item:last-of-type {
-	margin-right: 0;
-} */
+
+.techs-nav-list__item:hover {
+	cursor: pointer;
+}
 
 .techs-nav-list__text {
 	font-size: 14px;
 	line-height: 17px;
 	text-align: center;
+	text-decoration: none;
+	color: #000;
 }
 
 @media screen and (max-width: 980px) {

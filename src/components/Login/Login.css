@@ -33,6 +33,13 @@
 	max-width: 396px;
 }
 
+.login__message {
+	margin: auto;
+	margin-bottom: 10px;
+	font-size: 13px;
+	color: #ff6838;
+}
+
 .login__input {
 	font-size: 10px;
 	line-height: 12.1px;
@@ -73,6 +80,12 @@
 	line-height: 17px;
 	text-align: center;
 	color: #ffffff;
+}
+
+.login__form_button_disabled {
+	pointer-events: none;
+	cursor: default;
+	background-color: grey;
 }
 
 .login__form_button:hover {

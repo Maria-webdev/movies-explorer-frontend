@@ -48,6 +48,15 @@
 	outline-color: #aaaaaa;
 }
 
+.search__input_error {
+	font-size: 10px;
+	line-height: 1.2;
+	color: #ee3465;
+	cursor: text;
+	position: absolute;
+	left: 30%;
+}
+
 .search__button {
 	border: none;
 	width: 80px;
@@ -87,15 +96,25 @@
 	width: 36px;
 	height: 16px;
 	align-self: center;
-	background-color: #2be080;
 	border: none;
 	border-radius: 20px;
 	display: flex;
 	padding: 2px;
+	background-color: #ff6838;
+}
+
+._disabled {
+	pointer-events: none;
+	cursor: default;
+	background-color: grey;
 }
 
 .search__short_button:hover {
 	cursor: pointer;
+}
+
+._isChoosenBackground {
+	background-color: #2be080;
 }
 
 .search__short_disk {
@@ -106,6 +125,11 @@
 	border: none;
 	border-radius: 50px;
 	align-self: center;
+}
+
+._isChoosenButton {
+	margin-right: auto;
+	margin-left: 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -142,12 +166,4 @@
 		min-width: 300px;
 		margin: 0 auto;
 	}
-}
-
-._picked1 {
-	background-color: #ff6838;
-}
-
-._picked2 {
-	margin-right: auto;
 }
